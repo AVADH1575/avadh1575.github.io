@@ -25,7 +25,7 @@
   },
   "highlight.mp4": {
     "type": "video",
-    "caption": "Face ID login → home → language switch → transactions",
+    "caption": "Face ID login, home screen, switching language, transactions",
     "order": 1,
     "duration": 22,
     "sig": "{\"seg\":[{\"file\":\"ScreenRecording_04-18-2025 18-05-08_1.MP4\",\"start\":2.5,\"end\":10.5},{\"file\":\"ScreenRecording_04-18-2025 17-54-50_1.mp4\",\"start\":29,\"end\":43}],\"poster\":16.2,\"masks\":[],\"src\":[1795426497603.1687,1795426527188.2944]}"

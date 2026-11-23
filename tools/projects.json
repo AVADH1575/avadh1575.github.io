@@ -3,11 +3,11 @@
     "slug": "floor-plan-ar",
     "short": "Floor Plan (AR)",
     "folder": "1 Floor Plan (AR)",
-    "title": "Floor Plan Generation — AR Room Scanning",
+    "title": "Floor Plan Generation (AR room scanning)",
     "meta": "AMCODR · iOS · client project",
     "featured": true,
     "illustration": "floorplan",
-    "summary": "iOS app built in Flutter that scans a room with AR and generates its floor plan inside the app.",
+    "summary": "An iOS app made with Flutter. It scans a room with AR (ARKit RoomPlan) and draws the floor plan inside the app.",
     "bullets": [
       "AR room scanning with Apple ARKit RoomPlan on LiDAR iPhones and iPads, connected to Flutter through platform channels.",
       "Captures room geometry and generates the floor plan inside the app.",
@@ -22,7 +22,7 @@
     "videos": [
       {
         "name": "highlight",
-        "caption": "Live AR scan → 3D room model → generated 2D floor plan",
+        "caption": "Scanning a room, then the 3D model and the 2D floor plan",
         "order": 1,
         "poster": 12,
         "segments": [
@@ -40,7 +40,7 @@
       },
       {
         "name": "web-dashboard",
-        "caption": "Floor plan uploaded and edited in the web dashboard",
+        "caption": "The floor plan after upload, edited in the web dashboard",
         "order": 2,
         "poster": 8,
         "segments": [
@@ -67,21 +67,24 @@
     "slug": "indoor-positioning",
     "short": "Indoor Positioning",
     "folder": "2 Indoor Positioning (UWB-BLE)",
-    "title": "Indoor Positioning — UWB & BLE",
+    "title": "Indoor Positioning (UWB & BLE)",
     "meta": "AMCODR · client project",
     "featured": true,
-    "illustration": "uwb",
-    "summary": "Flutter app that finds and shows a device's position indoors using UWB and BLE.",
+    "summary": "Shows where the phone is inside a building, live on the floor plan. The position comes from UWB ranging and trilateration, BLE handles device communication, and step detection with the compass tracks movement.",
     "bullets": [
-      "UWB-based indoor positioning using trilateration logic, with BLE for device communication.",
-      "Calculates X/Y coordinates and positioning angles and shows them live in the Flutter app.",
-      "Native integration that streams location updates from native code to Flutter."
+      "Built UWB-based positioning: distance ranging to anchors and trilateration logic that calculates X/Y coordinates and positioning angles.",
+      "Integrated BLE for device communication.",
+      "Combined UWB positioning with step detection and compass heading to follow the user's movement on the floor plan.",
+      "Streamed location updates from native code to Flutter through platform channels and showed the live position on the floor plan."
     ],
     "tags": [
-      "Flutter",
       "UWB",
-      "Bluetooth Low Energy",
-      "Platform channels"
+      "BLE",
+      "Trilateration",
+      "Step detection",
+      "Compass",
+      "Platform channels",
+      "Flutter"
     ],
     "masks": [
       {
@@ -95,19 +98,14 @@
     ],
     "videos": [
       {
-        "name": "highlight",
+        "name": "live-tracking",
         "order": 1,
-        "poster": 19.5,
-        "caption": "Calibrate direction → set start position → live tracking while walking",
+        "poster": 3.0,
+        "caption": "Real app: live position on the floor plan while walking",
         "segments": [
           {
             "file": "IMG_8661.MP4",
-            "start": 12.5,
-            "end": 30.0
-          },
-          {
-            "file": "IMG_8661.MP4",
-            "start": 31.0,
+            "start": 31.5,
             "end": 36.8
           },
           {
@@ -120,36 +118,24 @@
     ],
     "files": {
       "IMG_8662.PNG": {
-        "caption": "Live position on the floor plan with compass heading",
+        "caption": "Live position with compass heading and step count",
         "order": 1
       },
+      "IMG_8663.PNG": {
+        "skip": true
+      },
       "IMG_8664.PNG": {
-        "caption": "Calibration 1: tap the flag to set direction",
-        "order": 2
+        "skip": true
       },
       "IMG_8665.PNG": {
-        "caption": "Calibration 2: face the top wall",
-        "order": 3
+        "skip": true
       },
       "IMG_8666.PNG": {
-        "caption": "Calibration 3: automatic direction capture",
-        "order": 4
-      },
-      "IMG_8663.PNG": {
-        "caption": "Step detection settings: sensitivity and thresholds",
-        "order": 5,
-        "masks": [
-          {
-            "x": 0.0299,
-            "y": 0.1053,
-            "w": 0.122,
-            "h": 0.0166,
-            "sx": 0.012,
-            "sy": 0.1155
-          }
-        ]
+        "skip": true
       }
-    }
+    },
+    "diagram": "uwb",
+    "diagramCaption": "How it works: BLE for device communication, UWB ranging to the anchors, trilateration for x/y, and steps + compass for movement"
   },
   {
     "slug": "dreamclouds",
@@ -157,7 +143,7 @@
     "folder": "4 Dreamclouds",
     "title": "Dreamclouds",
     "meta": "Dream journaling app · Android & iOS",
-    "summary": "Social dream-journaling app: write dreams, browse community feeds, chat, and get an AI analysis of each dream.",
+    "summary": "A dream journal app. People write down their dreams, read other people's, chat, and can get an AI reading of a dream.",
     "bullets": [
       "App features built with Flutter and BLoC.",
       "Stripe membership checkout with backend payment verification.",
@@ -171,7 +157,7 @@
     "videos": [
       {
         "name": "highlight-ios",
-        "caption": "iOS: dream feeds, chat, posting a dream and AI analysis",
+        "caption": "iOS: feeds, chat, and posting a dream with AI analysis",
         "order": 1,
         "poster": 2.3,
         "segments": [
@@ -208,7 +194,7 @@
     "folder": "7 Piggy",
     "title": "Piggy",
     "meta": "Savings app",
-    "summary": "Savings app with deposits, withdrawals, earned-interest history, an interest calculator and Face ID login, available in German, French and English.",
+    "summary": "A savings app with deposits, withdrawals, interest history, an interest calculator and Face ID login. Works in German, French and English.",
     "bullets": [
       "Savings and budget management features built in Flutter."
     ],
@@ -218,7 +204,7 @@
     "videos": [
       {
         "name": "highlight",
-        "caption": "Face ID login → home → language switch → transactions",
+        "caption": "Face ID login, home screen, switching language, transactions",
         "order": 1,
         "poster": 16.2,
         "segments": [
@@ -260,7 +246,7 @@
     "folder": "6 Marketplace App",
     "title": "Marketplace App",
     "meta": "Buy & sell marketplace",
-    "summary": "Buy-and-sell marketplace app with product listings, location-based search, seller chat and an in-app wallet.",
+    "summary": "A buy and sell app with listings, location-based search, chat with sellers and an in-app wallet.",
     "bullets": [
       "Built Flutter mobile features and integrated APIs for a marketplace app."
     ],
@@ -334,7 +320,7 @@
     "folder": "3 Gauge",
     "title": "Gauge",
     "meta": "KPI management app",
-    "summary": "Flutter app for tracking KPIs, with a daily dashboard, charts and shareable reports.",
+    "summary": "A KPI tracking app with a daily dashboard, charts and reports you can share.",
     "bullets": [
       "KPI tracking, dashboards and report workflows with Cubit.",
       "PDF report generation inside the app.",
@@ -382,7 +368,7 @@
     "folder": "5 IOweYou",
     "title": "IOweYou",
     "meta": "Expense sharing app",
-    "summary": "Expense sharing app: create groups, add expenses, split them equally or unequally and see who owes whom.",
+    "summary": "Splits group expenses (equally or not) and shows who owes whom.",
     "bullets": [
       "Expense sharing and tracking with secure authentication and cloud data sync."
     ],

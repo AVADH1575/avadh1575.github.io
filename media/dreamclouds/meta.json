@@ -1,7 +1,7 @@
 {
   "highlight-ios.mp4": {
     "type": "video",
-    "caption": "iOS: dream feeds, chat, posting a dream and AI analysis",
+    "caption": "iOS: feeds, chat, and posting a dream with AI analysis",
     "order": 1,
     "duration": 19.3,
     "sig": "{\"seg\":[{\"file\":\"signal-2026-09-24-18-24-09-029_002.mp4\",\"start\":2.6,\"end\":16.3},{\"file\":\"signal-2026-09-24-18-24-09-029_002.mp4\",\"start\":20.5,\"end\":26.1}],\"poster\":2.3,\"masks\":[],\"src\":[1795425894652.9326,1795425894652.9326]}"

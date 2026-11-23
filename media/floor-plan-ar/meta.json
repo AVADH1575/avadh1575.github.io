@@ -13,14 +13,14 @@
   },
   "highlight.mp4": {
     "type": "video",
-    "caption": "Live AR scan → 3D room model → generated 2D floor plan",
+    "caption": "Scanning a room, then the 3D model and the 2D floor plan",
     "order": 1,
     "duration": 31.1,
     "sig": "{\"seg\":[{\"file\":\"ScreenRecording_06-23-2025 18-03-58_1.mp4\",\"start\":24,\"end\":46.5},{\"file\":\"ScreenRecording_06-23-2025 18-03-58_1.mp4\",\"start\":90,\"end\":98.6}],\"poster\":12,\"masks\":[],\"src\":[1795426434527.325,1795426434527.325]}"
   },
   "web-dashboard.mp4": {
     "type": "video",
-    "caption": "Floor plan uploaded and edited in the web dashboard",
+    "caption": "The floor plan after upload, edited in the web dashboard",
     "order": 2,
     "duration": 19,
     "sig": "{\"seg\":[{\"file\":\"ScreenRecording_06-23-2025 18-03-58_1.mp4\",\"start\":102,\"end\":121}],\"poster\":8,\"masks\":[],\"src\":[1795426434527.325]}"

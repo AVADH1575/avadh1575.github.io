@@ -1,39 +1,15 @@
 {
   "img-8662.webp": {
     "type": "image",
-    "caption": "Live position on the floor plan with compass heading",
+    "caption": "Live position with compass heading and step count",
     "order": 1,
     "sig": "{\"masks\":[{\"x\":0.0299,\"y\":0.1053,\"w\":0.345,\"h\":0.0166,\"sx\":0.405,\"sy\":0.1155}],\"src\":1795432836522.093}"
   },
-  "img-8663.webp": {
-    "type": "image",
-    "caption": "Step detection settings: sensitivity and thresholds",
-    "order": 5,
-    "sig": "{\"masks\":[{\"x\":0.0299,\"y\":0.1053,\"w\":0.122,\"h\":0.0166,\"sx\":0.012,\"sy\":0.1155}],\"src\":1795432833459.3516}"
-  },
-  "img-8664.webp": {
-    "type": "image",
-    "caption": "Calibration 1: tap the flag to set direction",
-    "order": 2,
-    "sig": "{\"masks\":[{\"x\":0.0299,\"y\":0.1053,\"w\":0.345,\"h\":0.0166,\"sx\":0.405,\"sy\":0.1155}],\"src\":1795432824508.1038}"
-  },
-  "img-8665.webp": {
-    "type": "image",
-    "caption": "Calibration 2: face the top wall",
-    "order": 3,
-    "sig": "{\"masks\":[{\"x\":0.0299,\"y\":0.1053,\"w\":0.345,\"h\":0.0166,\"sx\":0.405,\"sy\":0.1155}],\"src\":1795432827417.3928}"
-  },
-  "img-8666.webp": {
-    "type": "image",
-    "caption": "Calibration 3: automatic direction capture",
-    "order": 4,
-    "sig": "{\"masks\":[{\"x\":0.0299,\"y\":0.1053,\"w\":0.345,\"h\":0.0166,\"sx\":0.405,\"sy\":0.1155}],\"src\":1795432830792.8452}"
-  },
-  "highlight.mp4": {
+  "live-tracking.mp4": {
     "type": "video",
-    "caption": "Calibrate direction → set start position → live tracking while walking",
+    "caption": "Real app: live position on the floor plan while walking",
     "order": 1,
-    "duration": 34.8,
-    "sig": "{\"seg\":[{\"file\":\"IMG_8661.MP4\",\"start\":12.5,\"end\":30},{\"file\":\"IMG_8661.MP4\",\"start\":31,\"end\":36.8},{\"file\":\"IMG_8661.MP4\",\"start\":40.5,\"end\":52}],\"poster\":19.5,\"masks\":[{\"x\":0.0299,\"y\":0.1053,\"w\":0.345,\"h\":0.0166,\"sx\":0.405,\"sy\":0.1155}],\"src\":[1795432840761.2026,1795432840761.2026,1795432840761.2026]}"
+    "duration": 16.8,
+    "sig": "{\"seg\":[{\"file\":\"IMG_8661.MP4\",\"start\":31.5,\"end\":36.8},{\"file\":\"IMG_8661.MP4\",\"start\":40.5,\"end\":52}],\"poster\":3,\"masks\":[{\"x\":0.0299,\"y\":0.1053,\"w\":0.345,\"h\":0.0166,\"sx\":0.405,\"sy\":0.1155}],\"src\":[1795432840761.2026,1795432840761.2026]}"
   }
 }

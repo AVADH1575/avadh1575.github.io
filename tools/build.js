@@ -227,6 +227,54 @@ const ART = {
 };
 const PLAY = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
 
+// Animated "how it works" diagrams (theme colours come from .dg-* classes in index.html).
+const DIAGRAMS = {
+  uwb() {
+    const anchors = [{ x: 44, y: 44, n: 'A' }, { x: 316, y: 44, n: 'B' }, { x: 180, y: 262, n: 'C' }];
+    const P = [{ x: 96, y: 206 }, { x: 150, y: 150 }, { x: 216, y: 182 }, { x: 262, y: 112 }];
+    const f1 = (v) => v.toFixed(1);
+    const dist = (a, b) => Math.hypot(a.x - b.x, a.y - b.y);
+    // Footprints along the walked path (step detection).
+    const prints = [];
+    for (let i = 0; i < P.length - 1; i++) {
+      const a = P[i], b = P[i + 1], len = dist(a, b), ux = (b.x - a.x) / len, uy = (b.y - a.y) / len;
+      const ang = Math.atan2(uy, ux) * 180 / Math.PI + 90;
+      for (let t = 12, k = 0; t < len - 6; t += 17, k++) {
+        const side = k % 2 ? 4 : -4;
+        const cx = a.x + ux * t - uy * side, cy = a.y + uy * t + ux * side;
+        prints.push({ seg: i, svg: `<ellipse class="dg-step" cx="${f1(cx)}" cy="${f1(cy)}" rx="2.4" ry="4" transform="rotate(${f1(ang)} ${f1(cx)} ${f1(cy)})"/>` });
+      }
+    }
+    const states = P.map((p, i) => {
+      const rings = anchors.map((a) => `<circle class="dg-range" cx="${a.x}" cy="${a.y}" r="${f1(dist(a, p))}"/>`).join('');
+      const rays = anchors.map((a) => `<line class="dg-ray" x1="${a.x}" y1="${a.y}" x2="${p.x}" y2="${p.y}"/>`).join('');
+      const steps = prints.filter((s) => s.seg < i).map((s) => s.svg).join('');
+      const label = `x ${f1((p.x - 20) / 40)} m · y ${f1((284 - p.y) / 40)} m`;
+      const lx = p.x > 230 ? p.x - 118 : p.x + 14, ly = p.y - 16;
+      return `<g class="dg-state dg-s${i + 1}"><g clip-path="url(#dg-room)">${rings}${rays}</g>${steps}`
+        + `<circle class="dg-halo" cx="${p.x}" cy="${p.y}" r="14"/><circle class="dg-dev" cx="${p.x}" cy="${p.y}" r="7"/>`
+        + `<path class="dg-wave" d="M${p.x + 10} ${p.y - 10}a8 8 0 0 1 0 11M${p.x + 14} ${p.y - 14}a13 13 0 0 1 0 19"/>`
+        + `<rect class="dg-tag" x="${lx}" y="${ly - 11}" width="106" height="17" rx="5"/><text class="dg-tagtext" x="${lx + 53}" y="${ly + 1.5}">${label}</text></g>`;
+    }).join('');
+    const anchorSvg = anchors.map((a) => `<circle class="dg-pulse" cx="${a.x}" cy="${a.y}" r="12"/><rect class="dg-anchor" x="${a.x - 11}" y="${a.y - 11}" width="22" height="22" rx="6"/><text class="dg-anchortext" x="${a.x}" y="${a.y + 4}">${a.n}</text>`).join('');
+    const legend = `
+      <g class="dg-legend">
+        <rect class="dg-ble" x="22" y="300" width="30" height="16" rx="8"/><text class="dg-bletext" x="37" y="311.5">BLE</text><text x="60" y="312">device communication</text>
+        <circle class="dg-range dg-solid" cx="37" cy="338" r="8"/><text x="60" y="342">UWB ranging to anchors</text>
+        <path class="dg-x" d="M206 302l10 10M216 302l-10 10"/><text x="226" y="312">trilateration → x, y</text>
+        <ellipse class="dg-step" cx="207" cy="340" rx="2.4" ry="4"/><ellipse class="dg-step" cx="215" cy="335" rx="2.4" ry="4"/><text x="226" y="342">steps + compass</text>
+      </g>`;
+    return `<svg class="dg" viewBox="0 0 360 356" role="img" aria-label="How the indoor positioning works: BLE device communication, UWB distance ranging to anchors A, B and C, trilateration to an x, y position, and step detection with compass heading for movement.">
+      <defs><clipPath id="dg-room"><rect x="20" y="20" width="320" height="264"/></clipPath></defs>
+      <path class="dg-wall" d="M20 20H340V284H214M156 284H20V20M244 20V96"/>
+      ${states}${anchorSvg}${legend}
+    </svg>`;
+  },
+};
+const MINI = {
+  uwb: '<svg class="mini" viewBox="0 0 60 60" aria-hidden="true"><circle cx="14" cy="14" r="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 3" opacity=".6"/><circle cx="46" cy="14" r="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 3" opacity=".6"/><rect x="9" y="9" width="10" height="10" rx="3" fill="currentColor"/><rect x="41" y="9" width="10" height="10" rx="3" fill="currentColor"/><rect x="25" y="44" width="10" height="10" rx="3" fill="currentColor"/><circle cx="28" cy="30" r="4.5" fill="#3CCB8A"/></svg>',
+};
+
 const countLabel = (m) => {
   const v = m.filter((x) => x.type === 'video').length;
   const i = m.length - v;
@@ -246,11 +294,12 @@ function bodyHTML(p, withCount) {
 }
 
 function showcaseHTML(p) {
-  const items = p.media;
+  const items = (p.diagram && DIAGRAMS[p.diagram] ? [{ type: 'art', key: p.diagram, caption: p.diagramCaption || 'How it works' }] : []).concat(p.media);
   let stage, thumbs = '', caption = '';
   if (items.length) {
     stage = items.map((m, i) => {
-      const alt = esc(`${p.title}${m.caption ? ' — ' + m.caption : ''}`);
+      const alt = esc(`${p.title}${m.caption ? ': ' + m.caption : ''}`);
+      if (m.type === 'art') return `<div class="item diagram${i === 0 ? ' on' : ''}" data-caption="${esc(m.caption)}">${DIAGRAMS[m.key]()}</div>`;
       const inner = m.type === 'video'
         ? `<video controls muted playsinline loop preload="none"${i === 0 ? ' data-lead' : ''}${m.poster ? ` poster="${m.poster}"` : ''} aria-label="${alt}"><source src="${m.src}" type="video/mp4"></video>`
         : `<button class="zoom" type="button" aria-label="Open larger: ${alt}"><img src="${m.src}" alt="${alt}" loading="lazy" decoding="async"></button>`;
@@ -258,6 +307,7 @@ function showcaseHTML(p) {
     }).join('\n            ');
     if (items.length > 1) {
       thumbs = `\n          <div class="thumbs" aria-label="${esc(p.title)} media">` + items.map((m, i) => {
+        if (m.type === 'art') return `<button class="thumb art-thumb${i === 0 ? ' on' : ''}" type="button" data-i="${i}" aria-label="${esc('Diagram: ' + m.caption)}">${MINI[m.key] || ''}</button>`;
         const img = m.type === 'video' ? m.poster : m.src;
         const label = esc(`${m.type === 'video' ? 'Video' : 'Screenshot'} ${i + 1}${m.caption ? ': ' + m.caption : ''}`);
         const badge = m.type === 'video' ? `<span class="play">${PLAY}</span>${m.duration ? `<span class="dur">${clock(m.duration)}</span>` : ''}` : '';
@@ -284,8 +334,8 @@ function cardHTML(p) {
       </article>`;
 }
 
-const showcase = PROJECTS.filter((p) => p.media.length || p.illustration);
-const compact = PROJECTS.filter((p) => !(p.media.length || p.illustration));
+const showcase = PROJECTS.filter((p) => p.media.length || p.illustration || p.diagram);
+const compact = PROJECTS.filter((p) => !(p.media.length || p.illustration || p.diagram));
 const jump = `<nav class="jump" aria-label="Jump to a project">${PROJECTS.map((p) => {
   const kind = p.media.some((m) => m.type === 'video') ? '▶ ' : '';
   return `<a href="#project-${p.slug}">${kind}${esc(p.short || p.title)}</a>`;
