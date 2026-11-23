@@ -2,61 +2,73 @@
   "2-150757512.webp": {
     "type": "image",
     "caption": "Product details with seller chat",
-    "order": 2
+    "order": 2,
+    "sig": "{\"masks\":[],\"src\":1795427267486.8606}"
   },
   "4-249949.webp": {
     "type": "image",
     "caption": "Seller profile",
-    "order": 3
+    "order": 3,
+    "sig": "{\"masks\":[],\"src\":1795427274989.0056}"
   },
   "5-1.webp": {
     "type": "image",
     "caption": "Location and search radius",
-    "order": 5
+    "order": 5,
+    "sig": "{\"masks\":[],\"src\":1795427284217.5188}"
   },
   "6-150434.webp": {
     "type": "image",
     "caption": "My listings",
-    "order": 7
+    "order": 7,
+    "sig": "{\"masks\":[],\"src\":1795427290651.4297}"
   },
   "8-7.webp": {
     "type": "image",
     "caption": "Wallet and transactions",
-    "order": 8
+    "order": 8,
+    "sig": "{\"masks\":[],\"src\":1795427302044.3423}"
   },
   "signal-2026-05-25-121215-1.webp": {
     "type": "image",
     "caption": "Marketplace home",
-    "order": 1
+    "order": 1,
+    "sig": "{\"masks\":[],\"src\":1795427258219.6992}"
   },
   "simulator-screenshot-40ef352c-760e-44fc-8518-a925a3698fd3.webp": {
     "type": "image",
     "caption": "Create a listing",
-    "order": 6
+    "order": 6,
+    "sig": "{\"masks\":[],\"src\":1795426104422.0664}"
   },
   "simulator-screenshot-593c4a21-bdae-45ed-ba54-15473d5ade86.webp": {
     "type": "image",
     "caption": "Sign-up with mobile number",
-    "order": 12
+    "order": 12,
+    "sig": "{\"masks\":[],\"src\":1795426056755.1553}"
   },
   "simulator-screenshot-652f4342-d43e-4971-adb9-9c0622ead908.webp": {
     "type": "image",
     "caption": "Profile",
-    "order": 9
+    "order": 9,
+    "sig": "{\"masks\":[],\"src\":1795426072008.1587}"
   },
   "simulator-screenshot-84546c97-b842-4368-86ec-01159697405f.webp": {
     "type": "image",
     "caption": "Login",
-    "order": 11
+    "order": 11,
+    "sig": "{\"masks\":[],\"src\":1795426046185.4133}"
   },
   "simulator-screenshot-17385618-2f20-4741-8559-ff812d512203.webp": {
     "type": "image",
     "caption": "Filters",
-    "order": 4
+    "order": 4,
+    "sig": "{\"masks\":[],\"src\":1795426109506.0254}"
   },
   "simulator-screenshot-e1007997-4d8d-42be-93ca-31a78ab55bfa.webp": {
     "type": "image",
     "caption": "Edit profile",
-    "order": 10
+    "order": 10,
+    "sig": "{\"masks\":[],\"src\":1795426086217.5195}"
   }
 }

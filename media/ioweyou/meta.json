@@ -2,31 +2,37 @@
   "1721213967689-1.webp": {
     "type": "image",
     "caption": "Split an expense equally or unequally",
-    "order": 3
+    "order": 3,
+    "sig": "{\"masks\":[],\"src\":1795427454395.6057}"
   },
   "1721213968482-1.webp": {
     "type": "image",
     "caption": "Group details and members",
-    "order": 4
+    "order": 4,
+    "sig": "{\"masks\":[],\"src\":1795427472941.1113}"
   },
   "1721213973894-2.webp": {
     "type": "image",
     "caption": "Group expenses",
-    "order": 1
+    "order": 1,
+    "sig": "{\"masks\":[],\"src\":1795427465648.586}"
   },
   "1721213975841-5.webp": {
     "type": "image",
     "caption": "Balances: who owes whom",
-    "order": 2
+    "order": 2,
+    "sig": "{\"masks\":[],\"src\":1795427478450.551}"
   },
   "skype-picture-2024-07-12t12-46-18-471z.webp": {
     "type": "image",
     "caption": "Sign in with Google, Facebook or email",
-    "order": 5
+    "order": 5,
+    "sig": "{\"masks\":[],\"src\":1795427444849.5034}"
   },
   "skype-picture-2024-07-15t06-07-50-892z.webp": {
     "type": "image",
     "caption": "Create account",
-    "order": 6
+    "order": 6,
+    "sig": "{\"masks\":[],\"src\":1795427449610.264}"
   }
 }

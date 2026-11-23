@@ -2,25 +2,27 @@
   "img-7697.webp": {
     "type": "image",
     "caption": "Finished 3D room model",
-    "order": 2
+    "order": 2,
+    "sig": "{\"masks\":[],\"src\":1795426004255.0803}"
   },
   "img-7698.webp": {
     "type": "image",
     "caption": "Live RoomPlan scan with 3D preview",
-    "order": 1
+    "order": 1,
+    "sig": "{\"masks\":[],\"src\":1795425999599.0066}"
   },
   "highlight.mp4": {
     "type": "video",
     "caption": "Live AR scan → 3D room model → generated 2D floor plan",
     "order": 1,
     "duration": 31.1,
-    "sig": "{\"seg\":[{\"file\":\"ScreenRecording_06-23-2025 18-03-58_1.mp4\",\"start\":24,\"end\":46.5},{\"file\":\"ScreenRecording_06-23-2025 18-03-58_1.mp4\",\"start\":90,\"end\":98.6}],\"poster\":12,\"src\":[1795426434527.325,1795426434527.325]}"
+    "sig": "{\"seg\":[{\"file\":\"ScreenRecording_06-23-2025 18-03-58_1.mp4\",\"start\":24,\"end\":46.5},{\"file\":\"ScreenRecording_06-23-2025 18-03-58_1.mp4\",\"start\":90,\"end\":98.6}],\"poster\":12,\"masks\":[],\"src\":[1795426434527.325,1795426434527.325]}"
   },
   "web-dashboard.mp4": {
     "type": "video",
     "caption": "Floor plan uploaded and edited in the web dashboard",
     "order": 2,
     "duration": 19,
-    "sig": "{\"seg\":[{\"file\":\"ScreenRecording_06-23-2025 18-03-58_1.mp4\",\"start\":102,\"end\":121}],\"poster\":8,\"src\":[1795426434527.325]}"
+    "sig": "{\"seg\":[{\"file\":\"ScreenRecording_06-23-2025 18-03-58_1.mp4\",\"start\":102,\"end\":121}],\"poster\":8,\"masks\":[],\"src\":[1795426434527.325]}"
   }
 }

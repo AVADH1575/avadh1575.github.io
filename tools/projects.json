@@ -13,7 +13,12 @@
       "Captures room geometry and generates the floor plan inside the app.",
       "Saves the plan as JSON so it can be regenerated later, along with a floor plan image; the backend only stores the data."
     ],
-    "tags": ["Flutter", "ARKit RoomPlan", "Platform channels", "iOS"],
+    "tags": [
+      "Flutter",
+      "ARKit RoomPlan",
+      "Platform channels",
+      "iOS"
+    ],
     "videos": [
       {
         "name": "highlight",
@@ -21,8 +26,16 @@
         "order": 1,
         "poster": 12,
         "segments": [
-          { "file": "ScreenRecording_06-23-2025 18-03-58_1.mp4", "start": 24, "end": 46.5 },
-          { "file": "ScreenRecording_06-23-2025 18-03-58_1.mp4", "start": 90, "end": 98.6 }
+          {
+            "file": "ScreenRecording_06-23-2025 18-03-58_1.mp4",
+            "start": 24,
+            "end": 46.5
+          },
+          {
+            "file": "ScreenRecording_06-23-2025 18-03-58_1.mp4",
+            "start": 90,
+            "end": 98.6
+          }
         ]
       },
       {
@@ -31,13 +44,23 @@
         "order": 2,
         "poster": 8,
         "segments": [
-          { "file": "ScreenRecording_06-23-2025 18-03-58_1.mp4", "start": 102, "end": 121 }
+          {
+            "file": "ScreenRecording_06-23-2025 18-03-58_1.mp4",
+            "start": 102,
+            "end": 121
+          }
         ]
       }
     ],
     "files": {
-      "IMG_7698.jpg": { "caption": "Live RoomPlan scan with 3D preview", "order": 1 },
-      "IMG_7697.jpg": { "caption": "Finished 3D room model", "order": 2 }
+      "IMG_7698.jpg": {
+        "caption": "Live RoomPlan scan with 3D preview",
+        "order": 1
+      },
+      "IMG_7697.jpg": {
+        "caption": "Finished 3D room model",
+        "order": 2
+      }
     }
   },
   {
@@ -54,7 +77,79 @@
       "Calculates X/Y coordinates and positioning angles and shows them live in the Flutter app.",
       "Native integration that streams location updates from native code to Flutter."
     ],
-    "tags": ["Flutter", "UWB", "Bluetooth Low Energy", "Platform channels"]
+    "tags": [
+      "Flutter",
+      "UWB",
+      "Bluetooth Low Energy",
+      "Platform channels"
+    ],
+    "masks": [
+      {
+        "x": 0.0299,
+        "y": 0.1053,
+        "w": 0.345,
+        "h": 0.0166,
+        "sx": 0.405,
+        "sy": 0.1155
+      }
+    ],
+    "videos": [
+      {
+        "name": "highlight",
+        "order": 1,
+        "poster": 19.5,
+        "caption": "Calibrate direction → set start position → live tracking while walking",
+        "segments": [
+          {
+            "file": "IMG_8661.MP4",
+            "start": 12.5,
+            "end": 30.0
+          },
+          {
+            "file": "IMG_8661.MP4",
+            "start": 31.0,
+            "end": 36.8
+          },
+          {
+            "file": "IMG_8661.MP4",
+            "start": 40.5,
+            "end": 52.0
+          }
+        ]
+      }
+    ],
+    "files": {
+      "IMG_8662.PNG": {
+        "caption": "Live position on the floor plan with compass heading",
+        "order": 1
+      },
+      "IMG_8664.PNG": {
+        "caption": "Calibration 1: tap the flag to set direction",
+        "order": 2
+      },
+      "IMG_8665.PNG": {
+        "caption": "Calibration 2: face the top wall",
+        "order": 3
+      },
+      "IMG_8666.PNG": {
+        "caption": "Calibration 3: automatic direction capture",
+        "order": 4
+      },
+      "IMG_8663.PNG": {
+        "caption": "Step detection settings: sensitivity and thresholds",
+        "order": 5,
+        "masks": [
+          {
+            "x": 0.0299,
+            "y": 0.1053,
+            "w": 0.122,
+            "h": 0.0166,
+            "sx": 0.012,
+            "sy": 0.1155
+          }
+        ]
+      }
+    }
   },
   {
     "slug": "dreamclouds",
@@ -68,7 +163,11 @@
       "Stripe membership checkout with backend payment verification.",
       "Shared-dream deep links and multilingual translation."
     ],
-    "tags": ["BLoC", "Stripe", "Deep links"],
+    "tags": [
+      "BLoC",
+      "Stripe",
+      "Deep links"
+    ],
     "videos": [
       {
         "name": "highlight-ios",
@@ -76,8 +175,16 @@
         "order": 1,
         "poster": 2.3,
         "segments": [
-          { "file": "signal-2026-09-24-18-24-09-029_002.mp4", "start": 2.6, "end": 16.3 },
-          { "file": "signal-2026-09-24-18-24-09-029_002.mp4", "start": 20.5, "end": 26.1 }
+          {
+            "file": "signal-2026-09-24-18-24-09-029_002.mp4",
+            "start": 2.6,
+            "end": 16.3
+          },
+          {
+            "file": "signal-2026-09-24-18-24-09-029_002.mp4",
+            "start": 20.5,
+            "end": 26.1
+          }
         ]
       },
       {
@@ -86,7 +193,11 @@
         "order": 2,
         "poster": 3.6,
         "segments": [
-          { "file": "signal-2026-09-24-18-23-30-059_002.mp4", "start": 4, "end": 36.5 }
+          {
+            "file": "signal-2026-09-24-18-23-30-059_002.mp4",
+            "start": 4,
+            "end": 36.5
+          }
         ]
       }
     ]
@@ -101,7 +212,9 @@
     "bullets": [
       "Savings and budget management features built in Flutter."
     ],
-    "tags": ["Flutter"],
+    "tags": [
+      "Flutter"
+    ],
     "videos": [
       {
         "name": "highlight",
@@ -109,16 +222,36 @@
         "order": 1,
         "poster": 16.2,
         "segments": [
-          { "file": "ScreenRecording_04-18-2025 18-05-08_1.MP4", "start": 2.5, "end": 10.5 },
-          { "file": "ScreenRecording_04-18-2025 17-54-50_1.mp4", "start": 29, "end": 43 }
+          {
+            "file": "ScreenRecording_04-18-2025 18-05-08_1.MP4",
+            "start": 2.5,
+            "end": 10.5
+          },
+          {
+            "file": "ScreenRecording_04-18-2025 17-54-50_1.mp4",
+            "start": 29,
+            "end": 43
+          }
         ]
       }
     ],
     "files": {
-      "signal-2025-04-18-172744_003.jpg": { "caption": "Savings overview and earned interest", "order": 1 },
-      "signal-2025-04-18-172744_002.png": { "caption": "Interest calculator", "order": 2 },
-      "IMG_3539.png": { "caption": "Login with mobile number or Face ID", "order": 3 },
-      "signal-2025-04-18-172744_004.jpg": { "caption": "Onboarding tips", "order": 4 }
+      "signal-2025-04-18-172744_003.jpg": {
+        "caption": "Savings overview and earned interest",
+        "order": 1
+      },
+      "signal-2025-04-18-172744_002.png": {
+        "caption": "Interest calculator",
+        "order": 2
+      },
+      "IMG_3539.png": {
+        "caption": "Login with mobile number or Face ID",
+        "order": 3
+      },
+      "signal-2025-04-18-172744_004.jpg": {
+        "caption": "Onboarding tips",
+        "order": 4
+      }
     }
   },
   {
@@ -131,23 +264,68 @@
     "bullets": [
       "Built Flutter mobile features and integrated APIs for a marketplace app."
     ],
-    "tags": ["Flutter", "REST API"],
+    "tags": [
+      "Flutter",
+      "REST API"
+    ],
     "files": {
-      "signal-2026-05-25-121215 1.png": { "caption": "Marketplace home", "order": 1 },
-      "2 150757512.png": { "caption": "Product details with seller chat", "order": 2 },
-      "4 249949.png": { "caption": "Seller profile", "order": 3 },
-      "simulator_screenshot_17385618-2F20-4741-8559-FF812D512203.png": { "caption": "Filters", "order": 4 },
-      "5 1.png": { "caption": "Location and search radius", "order": 5 },
-      "simulator_screenshot_40EF352C-760E-44FC-8518-A925A3698FD3.png": { "caption": "Create a listing", "order": 6 },
-      "6 150434.png": { "caption": "My listings", "order": 7 },
-      "8 7.png": { "caption": "Wallet and transactions", "order": 8 },
-      "simulator_screenshot_652F4342-D43E-4971-ADB9-9C0622EAD908.png": { "caption": "Profile", "order": 9 },
-      "simulator_screenshot_E1007997-4D8D-42BE-93CA-31A78AB55BFA.png": { "caption": "Edit profile", "order": 10 },
-      "simulator_screenshot_84546C97-B842-4368-86EC-01159697405F.png": { "caption": "Login", "order": 11 },
-      "simulator_screenshot_593C4A21-BDAE-45ED-BA54-15473D5ADE86.png": { "caption": "Sign-up with mobile number", "order": 12 },
-      "simulator_screenshot_27D112BF-E374-46ED-9C09-36720759D76E.png": { "skip": true },
-      "simulator_screenshot_2D1FE3B5-77EB-4352-8C9A-7AC9355119E5.png": { "skip": true },
-      "simulator_screenshot_868610C3-2C6D-4FF9-BCDC-35BD5FC6C793.png": { "skip": true }
+      "signal-2026-05-25-121215 1.png": {
+        "caption": "Marketplace home",
+        "order": 1
+      },
+      "2 150757512.png": {
+        "caption": "Product details with seller chat",
+        "order": 2
+      },
+      "4 249949.png": {
+        "caption": "Seller profile",
+        "order": 3
+      },
+      "simulator_screenshot_17385618-2F20-4741-8559-FF812D512203.png": {
+        "caption": "Filters",
+        "order": 4
+      },
+      "5 1.png": {
+        "caption": "Location and search radius",
+        "order": 5
+      },
+      "simulator_screenshot_40EF352C-760E-44FC-8518-A925A3698FD3.png": {
+        "caption": "Create a listing",
+        "order": 6
+      },
+      "6 150434.png": {
+        "caption": "My listings",
+        "order": 7
+      },
+      "8 7.png": {
+        "caption": "Wallet and transactions",
+        "order": 8
+      },
+      "simulator_screenshot_652F4342-D43E-4971-ADB9-9C0622EAD908.png": {
+        "caption": "Profile",
+        "order": 9
+      },
+      "simulator_screenshot_E1007997-4D8D-42BE-93CA-31A78AB55BFA.png": {
+        "caption": "Edit profile",
+        "order": 10
+      },
+      "simulator_screenshot_84546C97-B842-4368-86EC-01159697405F.png": {
+        "caption": "Login",
+        "order": 11
+      },
+      "simulator_screenshot_593C4A21-BDAE-45ED-BA54-15473D5ADE86.png": {
+        "caption": "Sign-up with mobile number",
+        "order": 12
+      },
+      "simulator_screenshot_27D112BF-E374-46ED-9C09-36720759D76E.png": {
+        "skip": true
+      },
+      "simulator_screenshot_2D1FE3B5-77EB-4352-8C9A-7AC9355119E5.png": {
+        "skip": true
+      },
+      "simulator_screenshot_868610C3-2C6D-4FF9-BCDC-35BD5FC6C793.png": {
+        "skip": true
+      }
     }
   },
   {
@@ -162,15 +340,40 @@
       "PDF report generation inside the app.",
       "iOS StoreKit subscriptions to unlock premium features."
     ],
-    "tags": ["Cubit", "StoreKit", "PDF"],
+    "tags": [
+      "Cubit",
+      "StoreKit",
+      "PDF"
+    ],
     "files": {
-      "Gauge app-store feature graphic.png": { "caption": "Store feature graphic", "order": 1 },
-      "7 2374315 (3).png": { "caption": "Daily KPI dashboard", "order": 2 },
-      "7 2374315 (2).png": { "caption": "Adding a new KPI", "order": 3 },
-      "7 2374315.png": { "caption": "KPI report with charts", "order": 4 },
-      "8 7.png": { "caption": "Premium upgrade to share reports", "order": 5 },
-      "7 2374315 (4).png": { "caption": "Welcome screen", "order": 6 },
-      "7 2374315 (1).png": { "caption": "Login with email, Google or Facebook", "order": 7 }
+      "Gauge app-store feature graphic.png": {
+        "caption": "Store feature graphic",
+        "order": 1
+      },
+      "7 2374315 (3).png": {
+        "caption": "Daily KPI dashboard",
+        "order": 2
+      },
+      "7 2374315 (2).png": {
+        "caption": "Adding a new KPI",
+        "order": 3
+      },
+      "7 2374315.png": {
+        "caption": "KPI report with charts",
+        "order": 4
+      },
+      "8 7.png": {
+        "caption": "Premium upgrade to share reports",
+        "order": 5
+      },
+      "7 2374315 (4).png": {
+        "caption": "Welcome screen",
+        "order": 6
+      },
+      "7 2374315 (1).png": {
+        "caption": "Login with email, Google or Facebook",
+        "order": 7
+      }
     }
   },
   {
@@ -183,14 +386,36 @@
     "bullets": [
       "Expense sharing and tracking with secure authentication and cloud data sync."
     ],
-    "tags": ["Flutter", "Auth", "Cloud sync"],
+    "tags": [
+      "Flutter",
+      "Auth",
+      "Cloud sync"
+    ],
     "files": {
-      "1721213973894 2.png": { "caption": "Group expenses", "order": 1 },
-      "1721213975841 5.png": { "caption": "Balances: who owes whom", "order": 2 },
-      "1721213967689 1.png": { "caption": "Split an expense equally or unequally", "order": 3 },
-      "1721213968482 1.png": { "caption": "Group details and members", "order": 4 },
-      "Skype_Picture_2024_07_12T12_46_18_471Z.png": { "caption": "Sign in with Google, Facebook or email", "order": 5 },
-      "Skype_Picture_2024_07_15T06_07_50_892Z.png": { "caption": "Create account", "order": 6 }
+      "1721213973894 2.png": {
+        "caption": "Group expenses",
+        "order": 1
+      },
+      "1721213975841 5.png": {
+        "caption": "Balances: who owes whom",
+        "order": 2
+      },
+      "1721213967689 1.png": {
+        "caption": "Split an expense equally or unequally",
+        "order": 3
+      },
+      "1721213968482 1.png": {
+        "caption": "Group details and members",
+        "order": 4
+      },
+      "Skype_Picture_2024_07_12T12_46_18_471Z.png": {
+        "caption": "Sign in with Google, Facebook or email",
+        "order": 5
+      },
+      "Skype_Picture_2024_07_15T06_07_50_892Z.png": {
+        "caption": "Create account",
+        "order": 6
+      }
     }
   },
   {
@@ -203,6 +428,8 @@
     "bullets": [
       "Calculator with custom formulas and a dynamic UI."
     ],
-    "tags": ["Flutter"]
+    "tags": [
+      "Flutter"
+    ]
   }
 ]

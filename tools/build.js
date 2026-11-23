@@ -85,19 +85,20 @@ const TRANSCODE = (() => {
 })();
 
 // Encode a video from segments; writes out.mp4 and poster. Returns duration in seconds.
-function writeVideo(segments, out, poster, posterAt) {
+function writeVideo(segments, out, poster, posterAt, masks) {
   if (TRANSCODE) {
     const spec = path.join(tmp, 'spec.json');
     const posterPng = path.join(tmp, 'poster.png');
     fs.rmSync(posterPng, { force: true });
     fs.writeFileSync(spec, JSON.stringify({
-      out, maxSide: 1280, posterAt: posterAt != null ? posterAt : 0.5, posterOut: posterPng,
+      out, maxSide: 1280, posterAt: posterAt != null ? posterAt : 0.5, posterOut: posterPng, masks: masks || [],
       segments: segments.map((s) => ({ src: s.src, start: s.start, end: s.end })),
     }));
     const info = JSON.parse(run(TRANSCODE, [spec]).trim().split('\n').pop());
     if (fs.existsSync(posterPng)) writeImage(posterPng, poster);
     return info.duration;
   }
+  if (masks && masks.length) throw new Error('masks need the Swift encoder');
   const s = segments[0];
   const part = [];
   if (s.start != null) part.push('--start', String(s.start));
@@ -107,6 +108,16 @@ function writeVideo(segments, out, poster, posterAt) {
   const png = path.join(tmp, path.basename(out) + '.png');
   if (fs.existsSync(png)) writeImage(png, poster);
   return s.end != null ? s.end - (s.start || 0) : 0;
+}
+
+// Hide private details in a still image (same masks as videos). Returns the masked PNG path.
+function maskImage(src, masks) {
+  if (!masks || !masks.length) return src;
+  if (!TRANSCODE) throw new Error('masks need the Swift encoder');
+  const spec = path.join(tmp, 'mask.json'), outPng = path.join(tmp, 'masked.png');
+  fs.writeFileSync(spec, JSON.stringify({ imageIn: src, imageOut: outPng, masks }));
+  run(TRANSCODE, [spec]);
+  return outPng;
 }
 
 // 1) Process source folders into media/<slug>/
@@ -134,10 +145,15 @@ for (const p of PROJECTS) {
       const name = slugify(raw) + IMG_EXT;
       const src = path.join(srcDir, f), out = path.join(outDir, name);
       keep.add(name);
-      meta[name] = { type: 'image', caption: opt.caption != null ? opt.caption : captionOf(raw), order: opt.order != null ? opt.order : 999 };
+      const masks = opt.noMask ? [] : (opt.masks || p.masks || []);
+      const sig = JSON.stringify({ masks, src: mtime(src) });
+      meta[name] = { type: 'image', caption: opt.caption != null ? opt.caption : captionOf(raw), order: opt.order != null ? opt.order : 999, sig };
       try {
-        if (!fs.existsSync(out) || mtime(src) > mtime(out)) { writeImage(src, out); log.push(`image  ${p.slug}/${name}`); }
-      } catch (err) { log.push(`FAILED ${p.slug}/${f}: ${String(err.stderr || err.message).trim().split('\n')[0]}`); }
+        if (!fs.existsSync(out) || !prev[name] || prev[name].sig !== sig) { writeImage(maskImage(src, masks), out); log.push(`image  ${p.slug}/${name}${masks.length ? '  (masked)' : ''}`); }
+      } catch (err) {
+        keep.delete(name); delete meta[name];
+        log.push(`FAILED ${p.slug}/${f}: ${String(err.stderr || err.message).trim().split('\n')[0]}`);
+      }
     } else if (VIDEOS.has(ext) && !p.videos) {
       videoJobs.push({ name: raw, caption: opt.caption != null ? opt.caption : captionOf(raw), order: opt.order, segments: [{ file: f }] });
     }
@@ -152,12 +168,13 @@ for (const p of PROJECTS) {
     const missing = segments.find((s) => !fs.existsSync(s.src));
     if (missing) { log.push(`MISSING ${p.slug}/${missing.file} (video "${v.name}" skipped)`); continue; }
     ensureDir();
-    const sig = JSON.stringify({ seg: v.segments, poster: v.poster, src: segments.map((s) => mtime(s.src)) });
+    const vmasks = v.noMask ? [] : (v.masks || p.masks || []);
+    const sig = JSON.stringify({ seg: v.segments, poster: v.poster, masks: vmasks, src: segments.map((s) => mtime(s.src)) });
     keep.add(name); keep.add(posterName);
     let duration = prev[name] && prev[name].duration;
     try {
       if (!fs.existsSync(out) || !fs.existsSync(poster) || !prev[name] || prev[name].sig !== sig) {
-        duration = writeVideo(segments, out, poster, v.poster);
+        duration = writeVideo(segments, out, poster, v.poster, vmasks);
         const mb = sizeMB(out);
         if (mb > VIDEO_LIMIT_MB) {
           fs.unlinkSync(out); keep.delete(name); keep.delete(posterName);

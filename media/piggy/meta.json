@@ -2,28 +2,32 @@
   "img-3539.webp": {
     "type": "image",
     "caption": "Login with mobile number or Face ID",
-    "order": 3
+    "order": 3,
+    "sig": "{\"masks\":[],\"src\":1795426542369.7678}"
   },
   "signal-2025-04-18-172744-002.webp": {
     "type": "image",
     "caption": "Interest calculator",
-    "order": 2
+    "order": 2,
+    "sig": "{\"masks\":[],\"src\":1795426547073.3162}"
   },
   "signal-2025-04-18-172744-003.webp": {
     "type": "image",
     "caption": "Savings overview and earned interest",
-    "order": 1
+    "order": 1,
+    "sig": "{\"masks\":[],\"src\":1795426554255.3923}"
   },
   "signal-2025-04-18-172744-004.webp": {
     "type": "image",
     "caption": "Onboarding tips",
-    "order": 4
+    "order": 4,
+    "sig": "{\"masks\":[],\"src\":1795426559673.6575}"
   },
   "highlight.mp4": {
     "type": "video",
     "caption": "Face ID login → home → language switch → transactions",
     "order": 1,
     "duration": 22,
-    "sig": "{\"seg\":[{\"file\":\"ScreenRecording_04-18-2025 18-05-08_1.MP4\",\"start\":2.5,\"end\":10.5},{\"file\":\"ScreenRecording_04-18-2025 17-54-50_1.mp4\",\"start\":29,\"end\":43}],\"poster\":16.2,\"src\":[1795426497603.1687,1795426527188.2944]}"
+    "sig": "{\"seg\":[{\"file\":\"ScreenRecording_04-18-2025 18-05-08_1.MP4\",\"start\":2.5,\"end\":10.5},{\"file\":\"ScreenRecording_04-18-2025 17-54-50_1.mp4\",\"start\":29,\"end\":43}],\"poster\":16.2,\"masks\":[],\"src\":[1795426497603.1687,1795426527188.2944]}"
   }
 }
