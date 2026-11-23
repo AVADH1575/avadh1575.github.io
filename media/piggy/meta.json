@@ -1,0 +1,28 @@
+{
+  "img-3539.webp": {
+    "caption": "Login with mobile number or Face ID",
+    "order": 3
+  },
+  "screenrecording-04-18-2025-17-54-50-1-part1.mp4": {
+    "caption": "Overview, transactions, settings, documents and support",
+    "order": 1,
+    "sig": "[26,60]"
+  },
+  "screenrecording-04-18-2025-18-05-08-1-part1.mp4": {
+    "caption": "Face ID login, profile and notification settings",
+    "order": 2,
+    "sig": "[0,23]"
+  },
+  "signal-2025-04-18-172744-002.webp": {
+    "caption": "Interest calculator",
+    "order": 5
+  },
+  "signal-2025-04-18-172744-003.webp": {
+    "caption": "Savings overview and earned interest",
+    "order": 4
+  },
+  "signal-2025-04-18-172744-004.webp": {
+    "caption": "Onboarding tips",
+    "order": 6
+  }
+}

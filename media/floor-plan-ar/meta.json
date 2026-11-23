@@ -1,0 +1,20 @@
+{
+  "img-7697.webp": {
+    "caption": "Finished 3D room model",
+    "order": 4
+  },
+  "img-7698.webp": {
+    "caption": "Live RoomPlan scan with 3D preview",
+    "order": 3
+  },
+  "screenrecording-06-23-2025-18-03-58-1-part1.mp4": {
+    "caption": "Scanning a room with ARKit RoomPlan",
+    "order": 1,
+    "sig": "[17,29.5]"
+  },
+  "screenrecording-06-23-2025-18-03-58-1-part2.mp4": {
+    "caption": "3D room model, generated 2D floor plan and upload",
+    "order": 2,
+    "sig": "[90,60]"
+  }
+}

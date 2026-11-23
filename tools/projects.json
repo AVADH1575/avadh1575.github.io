@@ -1,0 +1,177 @@
+[
+  {
+    "slug": "floor-plan-ar",
+    "folder": "1 Floor Plan (AR)",
+    "title": "Floor Plan Generation — AR Room Scanning",
+    "meta": "AMCODR · iOS · client project",
+    "featured": true,
+    "illustration": "floorplan",
+    "summary": "iOS app built in Flutter that scans a room with AR and generates its floor plan inside the app.",
+    "bullets": [
+      "AR room scanning with Apple ARKit RoomPlan on LiDAR iPhones and iPads, connected to Flutter through platform channels.",
+      "Captures room geometry and generates the floor plan inside the app.",
+      "Saves the plan as JSON so it can be regenerated later, along with a floor plan image; the backend only stores the data."
+    ],
+    "tags": ["Flutter", "ARKit RoomPlan", "Platform channels", "iOS"],
+    "files": {
+      "ScreenRecording_06-23-2025 18-03-58_1.mp4": {
+        "clips": [
+          { "start": 17, "duration": 29.5, "caption": "Scanning a room with ARKit RoomPlan", "order": 1 },
+          { "start": 90, "duration": 60, "caption": "3D room model, generated 2D floor plan and upload", "order": 2 }
+        ]
+      },
+      "IMG_7698.jpg": { "caption": "Live RoomPlan scan with 3D preview", "order": 3 },
+      "IMG_7697.jpg": { "caption": "Finished 3D room model", "order": 4 }
+    }
+  },
+  {
+    "slug": "indoor-positioning",
+    "folder": "2 Indoor Positioning (UWB-BLE)",
+    "title": "Indoor Positioning — UWB & BLE",
+    "meta": "AMCODR · client project",
+    "featured": true,
+    "illustration": "uwb",
+    "summary": "Flutter app that finds and shows a device's position indoors using UWB and BLE.",
+    "bullets": [
+      "UWB-based indoor positioning using trilateration logic, with BLE for device communication.",
+      "Calculates X/Y coordinates and positioning angles and shows them live in the Flutter app.",
+      "Native integration that streams location updates from native code to Flutter."
+    ],
+    "tags": ["Flutter", "UWB", "Bluetooth Low Energy", "Platform channels"]
+  },
+  {
+    "slug": "gauge",
+    "folder": "3 Gauge",
+    "title": "Gauge",
+    "meta": "KPI management app",
+    "summary": "Flutter app for tracking KPIs, with a daily dashboard, charts and shareable reports.",
+    "bullets": [
+      "KPI tracking, dashboards and report workflows with Cubit.",
+      "PDF report generation inside the app.",
+      "iOS StoreKit subscriptions to unlock premium features."
+    ],
+    "tags": ["Cubit", "StoreKit", "PDF"],
+    "files": {
+      "Gauge app-store feature graphic.png": { "caption": "Store feature graphic", "order": 1 },
+      "7 2374315 (4).png": { "caption": "Welcome screen", "order": 2 },
+      "7 2374315 (1).png": { "caption": "Login with email, Google or Facebook", "order": 3 },
+      "7 2374315 (3).png": { "caption": "Daily KPI dashboard", "order": 4 },
+      "7 2374315 (2).png": { "caption": "Adding a new KPI", "order": 5 },
+      "7 2374315.png": { "caption": "KPI report with charts", "order": 6 },
+      "8 7.png": { "caption": "Premium upgrade to share reports", "order": 7 }
+    }
+  },
+  {
+    "slug": "dreamclouds",
+    "folder": "4 Dreamclouds",
+    "title": "Dreamclouds",
+    "meta": "Dream journaling app · Android & iOS",
+    "summary": "Social dream-journaling app: write dreams, browse community feeds, chat, and get an AI analysis of each dream.",
+    "bullets": [
+      "App features built with Flutter and BLoC.",
+      "Stripe membership checkout with backend payment verification.",
+      "Shared-dream deep links and multilingual translation."
+    ],
+    "tags": ["BLoC", "Stripe", "Deep links"],
+    "files": {
+      "DreamClouds-DEMO (1).mp4": { "skip": true },
+      "signal-2026-10-27-17-13-14-178_002.mp4": { "skip": true },
+      "signal-2026-09-24-18-24-09-029_002.mp4": {
+        "clips": [
+          { "start": 2.6, "duration": 13.7, "caption": "Dream feeds, verified dreams and chat (iOS, dark mode)", "order": 1 },
+          { "start": 20.5, "duration": 5.5, "caption": "Posting a dream with AI analysis", "order": 2 }
+        ]
+      },
+      "signal-2026-09-24-18-23-30-059_002.mp4": {
+        "clips": [
+          { "start": 4, "duration": 32.5, "caption": "Dream Bank, comments, feeds and trending words (Android)", "order": 3 }
+        ]
+      }
+    }
+  },
+  {
+    "slug": "ioweyou",
+    "folder": "5 IOweYou",
+    "title": "IOweYou",
+    "meta": "Expense sharing app",
+    "summary": "Expense sharing app: create groups, add expenses, split them equally or unequally and see who owes whom.",
+    "bullets": [
+      "Expense sharing and tracking with secure authentication and cloud data sync."
+    ],
+    "tags": ["Flutter", "Auth", "Cloud sync"],
+    "files": {
+      "Skype_Picture_2024_07_12T12_46_18_471Z.png": { "caption": "Sign in with Google, Facebook or email", "order": 1 },
+      "Skype_Picture_2024_07_15T06_07_50_892Z.png": { "caption": "Create account", "order": 2 },
+      "1721213968482 1.png": { "caption": "Group details and members", "order": 3 },
+      "1721213973894 2.png": { "caption": "Group expenses", "order": 4 },
+      "1721213967689 1.png": { "caption": "Split an expense equally or unequally", "order": 5 },
+      "1721213975841 5.png": { "caption": "Balances: who owes whom", "order": 6 }
+    }
+  },
+  {
+    "slug": "marketplace",
+    "folder": "6 Marketplace App",
+    "title": "Marketplace App",
+    "meta": "Buy & sell marketplace",
+    "summary": "Buy-and-sell marketplace app with product listings, location-based search, seller chat and an in-app wallet.",
+    "bullets": [
+      "Built Flutter mobile features and integrated APIs for a marketplace app."
+    ],
+    "tags": ["Flutter", "REST API"],
+    "files": {
+      "signal-2026-05-25-121215 1.png": { "caption": "Marketplace home", "order": 1 },
+      "2 150757512.png": { "caption": "Product details with seller chat", "order": 2 },
+      "4 249949.png": { "caption": "Seller profile", "order": 3 },
+      "simulator_screenshot_17385618-2F20-4741-8559-FF812D512203.png": { "caption": "Filters", "order": 4 },
+      "5 1.png": { "caption": "Location and search radius", "order": 5 },
+      "simulator_screenshot_40EF352C-760E-44FC-8518-A925A3698FD3.png": { "caption": "Create a listing", "order": 6 },
+      "6 150434.png": { "caption": "My listings", "order": 7 },
+      "8 7.png": { "caption": "Wallet and transactions", "order": 8 },
+      "simulator_screenshot_652F4342-D43E-4971-ADB9-9C0622EAD908.png": { "caption": "Profile", "order": 9 },
+      "simulator_screenshot_E1007997-4D8D-42BE-93CA-31A78AB55BFA.png": { "caption": "Edit profile", "order": 10 },
+      "simulator_screenshot_84546C97-B842-4368-86EC-01159697405F.png": { "caption": "Login", "order": 11 },
+      "simulator_screenshot_593C4A21-BDAE-45ED-BA54-15473D5ADE86.png": { "caption": "Sign-up with mobile number", "order": 12 },
+      "simulator_screenshot_27D112BF-E374-46ED-9C09-36720759D76E.png": { "skip": true },
+      "simulator_screenshot_2D1FE3B5-77EB-4352-8C9A-7AC9355119E5.png": { "skip": true },
+      "simulator_screenshot_868610C3-2C6D-4FF9-BCDC-35BD5FC6C793.png": { "skip": true }
+    }
+  },
+  {
+    "slug": "piggy",
+    "folder": "7 Piggy",
+    "title": "Piggy",
+    "meta": "Savings app",
+    "summary": "Savings app with deposits, withdrawals, earned-interest history, an interest calculator and Face ID login, available in German, French and English.",
+    "bullets": [
+      "Savings and budget management features built in Flutter."
+    ],
+    "tags": ["Flutter"],
+    "files": {
+      "ScreenRecording_04-18-2025 17-54-50_1.mp4": {
+        "clips": [
+          { "start": 26, "duration": 60, "caption": "Overview, transactions, settings, documents and support", "order": 1 }
+        ]
+      },
+      "ScreenRecording_04-18-2025 18-05-08_1.MP4": {
+        "clips": [
+          { "start": 0, "duration": 23, "caption": "Face ID login, profile and notification settings", "order": 2 }
+        ]
+      },
+      "IMG_3539.png": { "caption": "Login with mobile number or Face ID", "order": 3 },
+      "signal-2025-04-18-172744_003.jpg": { "caption": "Savings overview and earned interest", "order": 4 },
+      "signal-2025-04-18-172744_002.png": { "caption": "Interest calculator", "order": 5 },
+      "signal-2025-04-18-172744_004.jpg": { "caption": "Onboarding tips", "order": 6 }
+    }
+  },
+  {
+    "slug": "custom-calculator",
+    "folder": "8 Custom Calculator",
+    "title": "Custom Calculator",
+    "meta": "Calculator app",
+    "summary": "",
+    "bullets": [
+      "Calculator with custom formulas and a dynamic UI."
+    ],
+    "tags": ["Flutter"]
+  }
+]

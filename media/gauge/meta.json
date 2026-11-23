@@ -1,0 +1,30 @@
+{
+  "7-2374315-1.webp": {
+    "caption": "Login with email, Google or Facebook",
+    "order": 3
+  },
+  "7-2374315-2.webp": {
+    "caption": "Adding a new KPI",
+    "order": 5
+  },
+  "7-2374315-3.webp": {
+    "caption": "Daily KPI dashboard",
+    "order": 4
+  },
+  "7-2374315-4.webp": {
+    "caption": "Welcome screen",
+    "order": 2
+  },
+  "7-2374315.webp": {
+    "caption": "KPI report with charts",
+    "order": 6
+  },
+  "8-7.webp": {
+    "caption": "Premium upgrade to share reports",
+    "order": 7
+  },
+  "gauge-app-store-feature-graphic.webp": {
+    "caption": "Store feature graphic",
+    "order": 1
+  }
+}
