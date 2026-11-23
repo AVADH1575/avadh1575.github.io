@@ -1,41 +1,68 @@
 // Web video encoder for the portfolio (macOS AVFoundation, no ffmpeg needed).
-// - H.264 MP4, fast start, longest side <= maxSide, bitrate scaled to the frame size
-// - Optional clip: start / duration in seconds
-// - Drops audio (UI demos; avoids publishing background conversations) and all metadata
+// Joins one or more segments (from one or more source files) into a single H.264 MP4:
+// fast start, longest side <= maxSide, bitrate scaled to frame size, NO audio, no metadata.
+// Optionally saves a poster frame (PNG) at a given time of the output.
 //
-// usage: transcode <src> <out> [start] [duration] [maxSide]
+// usage: transcode <spec.json>
+//   { "out": "/path/out.mp4", "maxSide": 1280,
+//     "segments": [ { "src": "/path/a.mp4", "start": 2.5, "end": 12 }, ... ],
+//     "posterAt": 7.5, "posterOut": "/path/poster.png" }
+// prints: { "w": 592, "h": 1280, "duration": 22.0 }
 import AVFoundation
+import AppKit
 
-let args = CommandLine.arguments
-guard args.count >= 3 else { fputs("usage: transcode <src> <out> [start] [duration] [maxSide]\n", stderr); exit(2) }
-let src = URL(fileURLWithPath: args[1]), out = URL(fileURLWithPath: args[2])
-let start = args.count > 3 ? Double(args[3]) ?? 0 : 0
-let wanted = args.count > 4 ? Double(args[4]) ?? -1 : -1
-let maxSide = args.count > 5 ? Double(args[5]) ?? 1280 : 1280
+struct Segment: Decodable { let src: String; let start: Double?; let end: Double? }
+struct Spec: Decodable { let out: String; let segments: [Segment]; let maxSide: Double?; let posterAt: Double?; let posterOut: String? }
+
+func fail(_ msg: String) -> Never { fputs(msg + "\n", stderr); exit(1) }
+
+guard CommandLine.arguments.count == 2 else { fail("usage: transcode <spec.json>") }
+let spec: Spec
+do { spec = try JSONDecoder().decode(Spec.self, from: Data(contentsOf: URL(fileURLWithPath: CommandLine.arguments[1]))) }
+catch { fail("bad spec: \(error)") }
+guard !spec.segments.isEmpty else { fail("no segments") }
+
+let out = URL(fileURLWithPath: spec.out)
 try? FileManager.default.removeItem(at: out)
 
-let asset = AVURLAsset(url: src)
-guard let track = asset.tracks(withMediaType: .video).first else { fputs("no video track\n", stderr); exit(1) }
-let total = CMTimeGetSeconds(asset.duration)
-let length = wanted > 0 ? min(wanted, total - start) : total - start
-guard length > 0 else { fputs("clip is outside the video\n", stderr); exit(1) }
+// 1) Build a composition from the segments.
+let comp = AVMutableComposition()
+guard let track = comp.addMutableTrack(withMediaType: .video, preferredTrackID: kCMPersistentTrackID_Invalid) else { fail("composition failed") }
+var cursor = CMTime.zero
+var natural = CGSize.zero
+var transform = CGAffineTransform.identity
+var fps: Float = 30
+for (i, seg) in spec.segments.enumerated() {
+  let asset = AVURLAsset(url: URL(fileURLWithPath: seg.src))
+  guard let src = asset.tracks(withMediaType: .video).first else { fail("no video track in \(seg.src)") }
+  if i == 0 { natural = src.naturalSize; transform = src.preferredTransform; fps = src.nominalFrameRate }
+  else if src.naturalSize != natural { fputs("warning: segment \(i) has a different frame size\n", stderr) }
+  let total = CMTimeGetSeconds(asset.duration)
+  let start = max(0, seg.start ?? 0), end = min(seg.end ?? total, total)
+  guard end > start else { fail("segment \(i) is empty (\(start)-\(end))") }
+  let range = CMTimeRange(start: CMTime(seconds: start, preferredTimescale: 600), end: CMTime(seconds: end, preferredTimescale: 600))
+  do { try track.insertTimeRange(range, of: src, at: cursor) } catch { fail("insert failed: \(error)") }
+  cursor = CMTimeAdd(cursor, range.duration)
+}
+track.preferredTransform = transform
 
-let reader = try AVAssetReader(asset: asset)
-reader.timeRange = CMTimeRange(start: CMTime(seconds: start, preferredTimescale: 600),
-                               duration: CMTime(seconds: length, preferredTimescale: 600))
+// 2) Encode.
+let reader: AVAssetReader
+do { reader = try AVAssetReader(asset: comp) } catch { fail("reader: \(error)") }
 let readerOut = AVAssetReaderTrackOutput(track: track, outputSettings: [
   kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange])
 readerOut.alwaysCopiesSampleData = false
 reader.add(readerOut)
 
-let natural = track.naturalSize
+let maxSide = spec.maxSide ?? 1280
 let scale = min(1.0, maxSide / Double(max(natural.width, natural.height)))
 func even(_ x: Double) -> Int { let v = Int(x.rounded()); return max(2, v - v % 2) }
 let w = even(Double(natural.width) * scale), h = even(Double(natural.height) * scale)
-let fps = Double(track.nominalFrameRate > 0 ? track.nominalFrameRate : 30)
-let bitrate = Int(min(2_000_000, max(800_000, Double(w * h) * min(fps, 30) * 0.07)))
+let rate = Double(fps > 0 ? fps : 30)
+let bitrate = Int(min(2_000_000, max(800_000, Double(w * h) * min(rate, 30) * 0.07)))
 
-let writer = try AVAssetWriter(outputURL: out, fileType: .mp4)
+let writer: AVAssetWriter
+do { writer = try AVAssetWriter(outputURL: out, fileType: .mp4) } catch { fail("writer: \(error)") }
 writer.shouldOptimizeForNetworkUse = true
 let input = AVAssetWriterInput(mediaType: .video, outputSettings: [
   AVVideoCodecKey: AVVideoCodecType.h264,
@@ -47,14 +74,13 @@ let input = AVAssetWriterInput(mediaType: .video, outputSettings: [
     AVVideoMaxKeyFrameIntervalKey: 60,
   ],
 ])
-input.transform = track.preferredTransform
+input.transform = transform
 input.expectsMediaDataInRealTime = false
 writer.add(input)
 
-guard reader.startReading() else { fputs("read failed: \(String(describing: reader.error))\n", stderr); exit(1) }
+guard reader.startReading() else { fail("read failed: \(String(describing: reader.error))") }
 writer.startWriting()
-writer.startSession(atSourceTime: reader.timeRange.start)
-
+writer.startSession(atSourceTime: .zero)
 let done = DispatchSemaphore(value: 0)
 input.requestMediaDataWhenReady(on: DispatchQueue(label: "encode")) {
   while input.isReadyForMoreMediaData {
@@ -64,11 +90,25 @@ input.requestMediaDataWhenReady(on: DispatchQueue(label: "encode")) {
   }
 }
 done.wait()
-writer.endSession(atSourceTime: CMTimeAdd(reader.timeRange.start, reader.timeRange.duration))
+writer.endSession(atSourceTime: cursor)
 let finished = DispatchSemaphore(value: 0)
 writer.finishWriting { finished.signal() }
 finished.wait()
 if writer.status != .completed || reader.status == .failed {
-  fputs("encode failed: \(String(describing: writer.error ?? reader.error))\n", stderr); exit(1)
+  fail("encode failed: \(String(describing: writer.error ?? reader.error))")
 }
-print("\(w)x\(h) \(String(format: "%.1f", length))s \(bitrate / 1000) kbps")
+
+// 3) Poster frame from the finished file.
+if let posterOut = spec.posterOut {
+  let asset = AVURLAsset(url: out)
+  let gen = AVAssetImageGenerator(asset: asset)
+  gen.appliesPreferredTrackTransform = true
+  gen.requestedTimeToleranceBefore = CMTime(seconds: 0.2, preferredTimescale: 600)
+  gen.requestedTimeToleranceAfter = CMTime(seconds: 0.2, preferredTimescale: 600)
+  let at = min(max(0, spec.posterAt ?? 0.5), max(0, CMTimeGetSeconds(cursor) - 0.2))
+  if let cg = try? gen.copyCGImage(at: CMTime(seconds: at, preferredTimescale: 600), actualTime: nil),
+     let png = NSBitmapImageRep(cgImage: cg).representation(using: .png, properties: [:]) {
+    try? png.write(to: URL(fileURLWithPath: posterOut))
+  }
+}
+print("{\"w\": \(w), \"h\": \(h), \"duration\": \(String(format: "%.2f", CMTimeGetSeconds(cursor)))}")

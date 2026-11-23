@@ -1,17 +1,16 @@
 {
-  "signal-2026-09-24-18-23-30-059-002-part1.mp4": {
-    "caption": "Dream Bank, comments, feeds and trending words (Android)",
-    "order": 3,
-    "sig": "[4,32.5]"
-  },
-  "signal-2026-09-24-18-24-09-029-002-part1.mp4": {
-    "caption": "Dream feeds, verified dreams and chat (iOS, dark mode)",
+  "highlight-ios.mp4": {
+    "type": "video",
+    "caption": "iOS: dream feeds, chat, posting a dream and AI analysis",
     "order": 1,
-    "sig": "[2.6,13.7]"
+    "duration": 19.3,
+    "sig": "{\"seg\":[{\"file\":\"signal-2026-09-24-18-24-09-029_002.mp4\",\"start\":2.6,\"end\":16.3},{\"file\":\"signal-2026-09-24-18-24-09-029_002.mp4\",\"start\":20.5,\"end\":26.1}],\"poster\":2.3,\"src\":[1795425894652.9326,1795425894652.9326]}"
   },
-  "signal-2026-09-24-18-24-09-029-002-part2.mp4": {
-    "caption": "Posting a dream with AI analysis",
+  "android.mp4": {
+    "type": "video",
+    "caption": "Android: Dream Bank, comments, feeds and trending words",
     "order": 2,
-    "sig": "[20.5,5.5]"
+    "duration": 32.5,
+    "sig": "{\"seg\":[{\"file\":\"signal-2026-09-24-18-23-30-059_002.mp4\",\"start\":4,\"end\":36.5}],\"poster\":3.6,\"src\":[1795425903882.5547]}"
   }
 }

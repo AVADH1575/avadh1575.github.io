@@ -4,13 +4,13 @@
 //
 // Source media (private, never published): ~/Documents/Portfolio Media/<project folder>/
 // Optimised media (published):              media/<slug>/
-// Project text + per-file options:          tools/projects.json
+// Project text + media options:             tools/projects.json
 //
-// Per-file options in projects.json ("files": { "<source file name>": {...} }):
-//   caption: "..."     text under the item
-//   order:   1         position (videos are always shown before images)
-//   skip:    true      leave this file out
-//   clips:   [{ start, duration, caption, order }]   (videos) publish only these parts
+// projects.json, per project:
+//   "files":  { "<image file>": { caption, order, skip } }      images (and videos when "videos" is absent)
+//   "videos": [ { name, caption, order, poster: <sec>,           curated videos, e.g. a highlight reel
+//                 segments: [ { file, start, end }, ... ] } ]   joined from one or more source files
+// Without "videos", every video file in the folder is published in full.
 //
 // Usage: node tools/build.js
 
@@ -31,7 +31,6 @@ const IMG_EXT = CWEBP ? '.webp' : '.jpg';
 const IMAGES = new Set(['.png', '.jpg', '.jpeg', '.heic', '.webp', '.tif', '.tiff']);
 const VIDEOS = new Set(['.mp4', '.mov', '.m4v']);
 const MAX_SIDE = 1600;          // px, longest side for images and posters
-const VIDEO_WARN_MB = 40;       // try a smaller preset above this
 const VIDEO_LIMIT_MB = 95;      // GitHub rejects files over 100 MB
 const NO_CAPTION = /^(img|dsc|pxl|screenshot|screen ?recording|simulator[_ ]screenshot|signal|skype[_ ]picture|whatsapp|photo|video|\d{5,})/i;
 
@@ -47,8 +46,9 @@ const captionOf = (name) => {
   const t = name.replace(/^\d+[\s._-]*/, '').replace(/[_]+/g, ' ').replace(/\s+-\s+|-(?=\S)/g, ' ').trim();
   return t && !/^\d/.test(t) ? t[0].toUpperCase() + t.slice(1) : '';
 };
+const clock = (s) => { const t = Math.round(s || 0); return `${Math.floor(t / 60)}:${String(t % 60).padStart(2, '0')}`; };
 const sizeMB = (f) => fs.statSync(f).size / 1048576;
-const newerThan = (src, out) => !fs.existsSync(out) || fs.statSync(src).mtimeMs > fs.statSync(out).mtimeMs;
+const mtime = (f) => fs.statSync(f).mtimeMs;
 const run = (cmd, args) => execFileSync(cmd, args, { stdio: ['ignore', 'pipe', 'pipe'] }).toString();
 const readJSON = (f, d) => { try { return JSON.parse(fs.readFileSync(f, 'utf8')); } catch (e) { return d; } };
 
@@ -68,39 +68,45 @@ function writeImage(src, out) {
   else run('sips', ['-s', 'format', 'jpeg', '-s', 'formatOptions', '80', png, '--out', out]);
 }
 
-// Compile the AVFoundation encoder (tools/transcode.swift) once; cached outside the repo.
+// AVFoundation encoder (tools/transcode.swift), compiled once and cached outside the repo.
 const TRANSCODE = (() => {
   const source = path.join(__dirname, 'transcode.swift');
   const bin = path.join(os.homedir(), 'Library', 'Caches', 'portfolio-tools', 'transcode');
   try {
-    if (!fs.existsSync(bin) || fs.statSync(source).mtimeMs > fs.statSync(bin).mtimeMs) {
+    if (!fs.existsSync(bin) || mtime(source) > mtime(bin)) {
       fs.mkdirSync(path.dirname(bin), { recursive: true });
       run('swiftc', ['-O', source, '-o', bin]);
     }
     return bin;
   } catch (e) {
-    log.push('note: Swift encoder unavailable, using avconvert (bigger files, keeps audio)');
+    log.push('note: Swift encoder unavailable, using avconvert (first segment only, bigger files, keeps audio)');
     return null;
   }
 })();
 
-// Re-encode a video (or part of it) to H.264 MP4 without audio or metadata.
-function writeVideo(src, out, clip) {
+// Encode a video from segments; writes out.mp4 and poster. Returns duration in seconds.
+function writeVideo(segments, out, poster, posterAt) {
   if (TRANSCODE) {
-    run(TRANSCODE, [src, out, String(clip.start != null ? clip.start : 0), String(clip.duration != null ? clip.duration : -1), '1280']);
-    return;
+    const spec = path.join(tmp, 'spec.json');
+    const posterPng = path.join(tmp, 'poster.png');
+    fs.rmSync(posterPng, { force: true });
+    fs.writeFileSync(spec, JSON.stringify({
+      out, maxSide: 1280, posterAt: posterAt != null ? posterAt : 0.5, posterOut: posterPng,
+      segments: segments.map((s) => ({ src: s.src, start: s.start, end: s.end })),
+    }));
+    const info = JSON.parse(run(TRANSCODE, [spec]).trim().split('\n').pop());
+    if (fs.existsSync(posterPng)) writeImage(posterPng, poster);
+    return info.duration;
   }
+  const s = segments[0];
   const part = [];
-  if (clip.start != null) part.push('--start', String(clip.start));
-  if (clip.duration != null) part.push('--duration', String(clip.duration));
-  run('avconvert', ['-s', src, '-p', 'Preset1280x720', '-o', out, '--replace', ...part]);
-  if (sizeMB(out) > VIDEO_WARN_MB) run('avconvert', ['-s', src, '-p', 'Preset960x540', '-o', out, '--replace', ...part]);
-}
-
-function writePoster(video, out) {
-  run('qlmanage', ['-t', '-s', String(MAX_SIDE), '-o', tmp, video]);
-  const png = path.join(tmp, path.basename(video) + '.png');
-  if (fs.existsSync(png)) writeImage(png, out);
+  if (s.start != null) part.push('--start', String(s.start));
+  if (s.end != null) part.push('--duration', String(s.end - (s.start || 0)));
+  run('avconvert', ['-s', s.src, '-p', 'Preset960x540', '-o', out, '--replace', ...part]);
+  run('qlmanage', ['-t', '-s', String(MAX_SIDE), '-o', tmp, out]);
+  const png = path.join(tmp, path.basename(out) + '.png');
+  if (fs.existsSync(png)) writeImage(png, poster);
+  return s.end != null ? s.end - (s.start || 0) : 0;
 }
 
 // 1) Process source folders into media/<slug>/
@@ -114,59 +120,63 @@ for (const p of PROJECTS) {
   const keep = new Set(['meta.json']);
   const opts = p.files || {};
   const files = fs.readdirSync(srcDir).filter((f) => !f.startsWith('.')).sort(byName);
+  const ensureDir = () => fs.mkdirSync(outDir, { recursive: true });
 
+  // Images (and, when no curated "videos" list exists, whole video files).
+  const videoJobs = (p.videos || []).map((v) => ({ ...v }));
   for (const f of files) {
     const ext = path.extname(f).toLowerCase();
-    if (!IMAGES.has(ext) && !VIDEOS.has(ext)) continue;
     const opt = opts[f] || {};
     if (opt.skip) continue;
     const raw = path.basename(f, path.extname(f));
-    const base = slugify(raw);
-    const src = path.join(srcDir, f);
-    fs.mkdirSync(outDir, { recursive: true });
-
-    try {
-      if (IMAGES.has(ext)) {
-        const name = base + IMG_EXT;
-        const out = path.join(outDir, name);
-        keep.add(name);
-        meta[name] = { caption: opt.caption != null ? opt.caption : captionOf(raw), order: opt.order != null ? opt.order : 999 };
-        if (newerThan(src, out)) { writeImage(src, out); log.push(`image  ${p.slug}/${name}  ${sizeMB(out).toFixed(1)} MB`); }
-        continue;
-      }
-      const clips = opt.clips && opt.clips.length ? opt.clips : [{}];
-      clips.forEach((c, k) => {
-        const stem = opt.clips ? `${base}-part${k + 1}` : base;
-        const name = stem + '.mp4', posterName = stem + '.poster' + IMG_EXT;
-        const out = path.join(outDir, name), poster = path.join(outDir, posterName);
-        const sig = JSON.stringify([c.start != null ? c.start : null, c.duration != null ? c.duration : null]);
-        meta[name] = {
-          caption: c.caption != null ? c.caption : (opt.caption != null ? opt.caption : captionOf(raw)),
-          order: c.order != null ? c.order : (opt.order != null ? opt.order : 999),
-          sig,
-        };
-        keep.add(name); keep.add(posterName);
-        const stale = newerThan(src, out) || (prev[name] && prev[name].sig) !== sig;
-        if (stale) {
-          writeVideo(src, out, c);
-          const mb = sizeMB(out);
-          if (mb > VIDEO_LIMIT_MB) {
-            fs.unlinkSync(out); keep.delete(name); keep.delete(posterName); delete meta[name];
-            log.push(`SKIPPED ${p.slug}/${f}: still ${mb.toFixed(0)} MB after compression — trim it shorter`);
-            return;
-          }
-          log.push(`video  ${p.slug}/${name}  ${mb.toFixed(1)} MB`);
-        }
-        if (stale || !fs.existsSync(poster)) writePoster(out, poster);
-      });
-    } catch (err) {
-      log.push(`FAILED ${p.slug}/${f}: ${String(err.stderr || err.message).trim().split('\n')[0]}`);
+    if (IMAGES.has(ext)) {
+      ensureDir();
+      const name = slugify(raw) + IMG_EXT;
+      const src = path.join(srcDir, f), out = path.join(outDir, name);
+      keep.add(name);
+      meta[name] = { type: 'image', caption: opt.caption != null ? opt.caption : captionOf(raw), order: opt.order != null ? opt.order : 999 };
+      try {
+        if (!fs.existsSync(out) || mtime(src) > mtime(out)) { writeImage(src, out); log.push(`image  ${p.slug}/${name}`); }
+      } catch (err) { log.push(`FAILED ${p.slug}/${f}: ${String(err.stderr || err.message).trim().split('\n')[0]}`); }
+    } else if (VIDEOS.has(ext) && !p.videos) {
+      videoJobs.push({ name: raw, caption: opt.caption != null ? opt.caption : captionOf(raw), order: opt.order, segments: [{ file: f }] });
     }
   }
+
+  // Videos.
+  for (const v of videoJobs) {
+    const stem = slugify(v.name);
+    const name = stem + '.mp4', posterName = stem + '.poster' + IMG_EXT;
+    const out = path.join(outDir, name), poster = path.join(outDir, posterName);
+    const segments = v.segments.map((s) => ({ ...s, src: path.join(srcDir, s.file) }));
+    const missing = segments.find((s) => !fs.existsSync(s.src));
+    if (missing) { log.push(`MISSING ${p.slug}/${missing.file} (video "${v.name}" skipped)`); continue; }
+    ensureDir();
+    const sig = JSON.stringify({ seg: v.segments, poster: v.poster, src: segments.map((s) => mtime(s.src)) });
+    keep.add(name); keep.add(posterName);
+    let duration = prev[name] && prev[name].duration;
+    try {
+      if (!fs.existsSync(out) || !fs.existsSync(poster) || !prev[name] || prev[name].sig !== sig) {
+        duration = writeVideo(segments, out, poster, v.poster);
+        const mb = sizeMB(out);
+        if (mb > VIDEO_LIMIT_MB) {
+          fs.unlinkSync(out); keep.delete(name); keep.delete(posterName);
+          log.push(`SKIPPED ${p.slug}/${name}: ${mb.toFixed(0)} MB — use shorter segments`);
+          continue;
+        }
+        log.push(`video  ${p.slug}/${name}  ${clock(duration)}  ${mb.toFixed(1)} MB`);
+      }
+      meta[name] = { type: 'video', caption: v.caption || '', order: v.order != null ? v.order : 999, duration, sig };
+    } catch (err) {
+      keep.delete(name); keep.delete(posterName);
+      log.push(`FAILED ${p.slug}/${name}: ${String(err.stderr || err.message).trim().split('\n')[0]}`);
+    }
+  }
+
   if (!fs.existsSync(outDir)) continue; // folder has no images/videos yet
   fs.writeFileSync(path.join(outDir, 'meta.json'), JSON.stringify(meta, null, 2));
   for (const f of fs.readdirSync(outDir)) {
-    if (!keep.has(f)) { fs.unlinkSync(path.join(outDir, f)); log.push(`removed ${p.slug}/${f}`); }
+    if (!keep.has(f)) { fs.rmSync(path.join(outDir, f), { recursive: true, force: true }); log.push(`removed ${p.slug}/${f}`); }
   }
 }
 
@@ -178,16 +188,14 @@ for (const p of PROJECTS) {
   const meta = readJSON(path.join(dir, 'meta.json'), {});
   const files = fs.readdirSync(dir);
   const items = [];
-  for (const f of files) {
-    const ext = path.extname(f).toLowerCase();
-    const base = path.basename(f, ext);
-    if (base.endsWith('.poster') || !meta[f]) continue;
+  for (const [f, m] of Object.entries(meta)) {
+    if (!files.includes(f)) continue;
     const rel = `media/${p.slug}/${f}`;
-    const m = meta[f];
-    if (ext === '.mp4') {
-      const poster = files.find((x) => x.startsWith(base + '.poster.'));
-      items.push({ type: 'video', src: rel, poster: poster ? `media/${p.slug}/${poster}` : '', caption: m.caption || '', order: m.order, name: f });
-    } else if (ext === '.webp' || ext === '.jpg') {
+    if (m.type === 'video') {
+      const stem = f.replace(/\.mp4$/, '');
+      const poster = files.find((x) => x.startsWith(stem + '.poster.'));
+      items.push({ type: 'video', src: rel, poster: poster ? `media/${p.slug}/${poster}` : '', caption: m.caption || '', order: m.order, duration: m.duration, name: f });
+    } else {
       items.push({ type: 'image', src: rel, caption: m.caption || '', order: m.order, name: f });
     }
   }
@@ -207,12 +215,14 @@ const countLabel = (m) => {
   const i = m.length - v;
   return [v && `${v} video${v > 1 ? 's' : ''}`, i && `${i} screenshot${i > 1 ? 's' : ''}`].filter(Boolean).join(' · ');
 };
+const captionText = (m) => [m.caption, m.type === 'video' && m.duration ? clock(m.duration) : ''].filter(Boolean).join(' · ');
 
 function bodyHTML(p, withCount) {
   const meta = [esc(p.meta), withCount && p.media.length ? esc(countLabel(p.media)) : ''].filter(Boolean).join(' · ');
   return `<div class="body">
           <div class="meta">${p.featured ? '<span class="tag">Featured</span>' : ''}${meta}</div>
           <h3>${esc(p.title)}</h3>${p.summary ? `\n          <p class="desc">${esc(p.summary)}</p>` : ''}
+          <p class="label">What I did</p>
           <ul>${p.bullets.map((b) => `<li>${esc(b)}</li>`).join('')}</ul>
           <div class="chips">${p.tags.map((t) => `<span class="chip">${esc(t)}</span>`).join('')}</div>
         </div>`;
@@ -225,18 +235,19 @@ function showcaseHTML(p) {
     stage = items.map((m, i) => {
       const alt = esc(`${p.title}${m.caption ? ' — ' + m.caption : ''}`);
       const inner = m.type === 'video'
-        ? `<video controls playsinline preload="none"${m.poster ? ` poster="${m.poster}"` : ''} aria-label="${alt}"><source src="${m.src}" type="video/mp4"></video>`
+        ? `<video controls muted playsinline loop preload="none"${i === 0 ? ' data-lead' : ''}${m.poster ? ` poster="${m.poster}"` : ''} aria-label="${alt}"><source src="${m.src}" type="video/mp4"></video>`
         : `<button class="zoom" type="button" aria-label="Open larger: ${alt}"><img src="${m.src}" alt="${alt}" loading="lazy" decoding="async"></button>`;
-      return `<div class="item${i === 0 ? ' on' : ''}" data-caption="${esc(m.caption)}">${inner}</div>`;
+      return `<div class="item${i === 0 ? ' on' : ''}" data-caption="${esc(captionText(m))}">${inner}</div>`;
     }).join('\n            ');
     if (items.length > 1) {
       thumbs = `\n          <div class="thumbs" aria-label="${esc(p.title)} media">` + items.map((m, i) => {
         const img = m.type === 'video' ? m.poster : m.src;
         const label = esc(`${m.type === 'video' ? 'Video' : 'Screenshot'} ${i + 1}${m.caption ? ': ' + m.caption : ''}`);
-        return `<button class="thumb${i === 0 ? ' on' : ''}" type="button" data-i="${i}" aria-label="${label}">${img ? `<img src="${img}" alt="" loading="lazy">` : ''}${m.type === 'video' ? `<span class="play">${PLAY}</span>` : ''}</button>`;
+        const badge = m.type === 'video' ? `<span class="play">${PLAY}</span>${m.duration ? `<span class="dur">${clock(m.duration)}</span>` : ''}` : '';
+        return `<button class="thumb${i === 0 ? ' on' : ''}" type="button" data-i="${i}" aria-label="${label}">${img ? `<img src="${img}" alt="" loading="lazy">` : ''}${badge}</button>`;
       }).join('') + `</div>`;
     }
-    caption = `\n          <p class="caption">${esc(items[0].caption)}</p>`;
+    caption = `\n          <p class="caption">${esc(captionText(items[0]))}</p>`;
   } else {
     stage = `<div class="item on art" aria-hidden="true">${ART[p.illustration] || ''}</div>`;
   }
@@ -258,7 +269,11 @@ function cardHTML(p) {
 
 const showcase = PROJECTS.filter((p) => p.media.length || p.illustration);
 const compact = PROJECTS.filter((p) => !(p.media.length || p.illustration));
-let html = `<div class="showcase">\n      ${showcase.map(showcaseHTML).join('\n      ')}\n      </div>`;
+const jump = `<nav class="jump" aria-label="Jump to a project">${PROJECTS.map((p) => {
+  const kind = p.media.some((m) => m.type === 'video') ? '▶ ' : '';
+  return `<a href="#project-${p.slug}">${kind}${esc(p.short || p.title)}</a>`;
+}).join('')}</nav>`;
+let html = `${jump}\n      <div class="showcase">\n      ${showcase.map(showcaseHTML).join('\n      ')}\n      </div>`;
 if (compact.length) {
   html += `\n      <h3 class="more-title">More projects</h3>\n      <div class="more">\n      ${compact.map(cardHTML).join('\n      ')}\n      </div>`;
 }

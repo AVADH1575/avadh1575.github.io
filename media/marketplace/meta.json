@@ -1,49 +1,61 @@
 {
   "2-150757512.webp": {
+    "type": "image",
     "caption": "Product details with seller chat",
     "order": 2
   },
   "4-249949.webp": {
+    "type": "image",
     "caption": "Seller profile",
     "order": 3
   },
   "5-1.webp": {
+    "type": "image",
     "caption": "Location and search radius",
     "order": 5
   },
   "6-150434.webp": {
+    "type": "image",
     "caption": "My listings",
     "order": 7
   },
   "8-7.webp": {
+    "type": "image",
     "caption": "Wallet and transactions",
     "order": 8
   },
   "signal-2026-05-25-121215-1.webp": {
+    "type": "image",
     "caption": "Marketplace home",
     "order": 1
   },
   "simulator-screenshot-40ef352c-760e-44fc-8518-a925a3698fd3.webp": {
+    "type": "image",
     "caption": "Create a listing",
     "order": 6
   },
   "simulator-screenshot-593c4a21-bdae-45ed-ba54-15473d5ade86.webp": {
+    "type": "image",
     "caption": "Sign-up with mobile number",
     "order": 12
   },
   "simulator-screenshot-652f4342-d43e-4971-adb9-9c0622ead908.webp": {
+    "type": "image",
     "caption": "Profile",
     "order": 9
   },
   "simulator-screenshot-84546c97-b842-4368-86ec-01159697405f.webp": {
+    "type": "image",
     "caption": "Login",
     "order": 11
   },
   "simulator-screenshot-17385618-2f20-4741-8559-ff812d512203.webp": {
+    "type": "image",
     "caption": "Filters",
     "order": 4
   },
   "simulator-screenshot-e1007997-4d8d-42be-93ca-31a78ab55bfa.webp": {
+    "type": "image",
     "caption": "Edit profile",
     "order": 10
   }

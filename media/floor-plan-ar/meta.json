@@ -1,20 +1,26 @@
 {
   "img-7697.webp": {
+    "type": "image",
     "caption": "Finished 3D room model",
-    "order": 4
+    "order": 2
   },
   "img-7698.webp": {
+    "type": "image",
     "caption": "Live RoomPlan scan with 3D preview",
-    "order": 3
+    "order": 1
   },
-  "screenrecording-06-23-2025-18-03-58-1-part1.mp4": {
-    "caption": "Scanning a room with ARKit RoomPlan",
+  "highlight.mp4": {
+    "type": "video",
+    "caption": "Live AR scan → 3D room model → generated 2D floor plan",
     "order": 1,
-    "sig": "[17,29.5]"
+    "duration": 31.1,
+    "sig": "{\"seg\":[{\"file\":\"ScreenRecording_06-23-2025 18-03-58_1.mp4\",\"start\":24,\"end\":46.5},{\"file\":\"ScreenRecording_06-23-2025 18-03-58_1.mp4\",\"start\":90,\"end\":98.6}],\"poster\":12,\"src\":[1795426434527.325,1795426434527.325]}"
   },
-  "screenrecording-06-23-2025-18-03-58-1-part2.mp4": {
-    "caption": "3D room model, generated 2D floor plan and upload",
+  "web-dashboard.mp4": {
+    "type": "video",
+    "caption": "Floor plan uploaded and edited in the web dashboard",
     "order": 2,
-    "sig": "[90,60]"
+    "duration": 19,
+    "sig": "{\"seg\":[{\"file\":\"ScreenRecording_06-23-2025 18-03-58_1.mp4\",\"start\":102,\"end\":121}],\"poster\":8,\"src\":[1795426434527.325]}"
   }
 }

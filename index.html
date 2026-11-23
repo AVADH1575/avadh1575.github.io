@@ -8,6 +8,13 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Avadh Darania — Senior Flutter Developer">
 <meta property="og:description" content="4+ years building and publishing Flutter apps for Android and iOS — from clean BLoC architecture to AR room scanning and UWB/BLE indoor positioning.">
+<meta property="og:url" content="https://avadh1575.github.io/">
+<meta property="og:image" content="https://avadh1575.github.io/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Avadh Darania, Senior Flutter Developer, with screens from apps they built">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://avadh1575.github.io/">
 <meta name="theme-color" content="#0A6CD8">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230A6CD8'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-size='28' font-weight='700' fill='white' text-anchor='middle'%3EAD%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -141,13 +148,14 @@
   .showcase { display: grid; gap: 22px; }
   .show { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); background: var(--surface); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; box-shadow: var(--shadow); }
   .show .media { display: flex; flex-direction: column; min-width: 0; background: linear-gradient(160deg, var(--accent-soft), var(--surface-2)); border-right: 1px solid var(--line); }
-  .stage { position: relative; height: 440px; }
+  .stage { position: relative; height: 520px; }
   .stage .item { position: absolute; inset: 0; display: none; place-items: center; padding: 14px; }
   .stage .item.on { display: grid; grid-template: minmax(0, 1fr) / minmax(0, 1fr); }
   .stage .item.art { color: var(--accent); }
   .stage .item.art svg { width: 84%; height: 84%; }
-  .stage img, .stage video { display: block; width: 100%; height: 100%; object-fit: contain; background: transparent; }
-  .zoom { all: unset; cursor: zoom-in; display: block; width: 100%; height: 100%; }
+  .stage img, .stage video { display: block; max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; border-radius: 14px; box-shadow: 0 10px 28px rgba(5, 12, 24, .28); }
+  .stage video { background: #000; }
+  .zoom { all: unset; cursor: zoom-in; display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; min-height: 0; }
   .zoom:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 10px; }
   .caption { margin: 0; padding: 0 16px 10px; font-size: 13.5px; color: var(--muted); min-height: 1.6em; }
   .thumbs { display: flex; gap: 8px; padding: 10px 14px 14px; overflow-x: auto; border-top: 1px solid var(--line); scrollbar-width: thin; }
@@ -156,6 +164,11 @@
   .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .thumb .play { position: absolute; inset: 0; display: grid; place-items: center; color: #fff; background: rgba(0, 0, 0, .35); }
   .thumb .play svg { width: 22px; height: 22px; }
+  .thumb .dur { position: absolute; right: 3px; bottom: 3px; padding: 1px 4px; border-radius: 4px; background: rgba(0, 0, 0, .7); color: #fff; font-size: 10px; font-weight: 600; line-height: 1.4; }
+  .label { margin: 4px 0 -4px; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+  .jump { display: flex; flex-wrap: wrap; gap: 8px; margin: -12px 0 26px; }
+  .jump a { font-size: 13.5px; font-weight: 500; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--text); }
+  .jump a:hover { border-color: var(--accent); text-decoration: none; }
   .show .body { padding: 26px; display: flex; flex-direction: column; gap: 10px; }
   .show h3 { margin: 0; font-size: 21px; letter-spacing: -.01em; }
   .show .meta, .proj .meta { font-size: 13.5px; color: var(--muted); }
@@ -179,7 +192,7 @@
   @media (max-width: 900px) {
     .show { grid-template-columns: 1fr; }
     .show .media { border-right: 0; border-bottom: 1px solid var(--line); }
-    .stage { height: 420px; }
+    .stage { height: 480px; }
   }
   @media (max-width: 720px) {
     .show .body { padding: 20px; }
@@ -227,10 +240,10 @@
     <a class="brand" href="#top" aria-label="Avadh Darania, home"><span class="logo">AD</span>Avadh Darania</a>
     <div style="display:flex;align-items:center;gap:10px;">
       <nav class="links" id="links" aria-label="Main">
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#experience">Experience</a>
         <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#about">About</a>
         <a href="#contact">Contact</a>
       </nav>
       <button class="icon-btn" id="theme" type="button" aria-label="Switch light or dark theme">
@@ -253,6 +266,8 @@
       <div class="cta">
         <a class="btn primary" href="Avadh_Darania_Resume.pdf" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>Download resume</a>
+        <a class="btn" href="#projects">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>See my work</a>
         <a class="btn" href="mailto:daraniavadh1575@gmail.com">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Email me</a>
         <a class="btn" href="https://www.linkedin.com/in/avadh-darania-7051a0178" target="_blank" rel="noopener">
@@ -268,41 +283,181 @@
     </div>
   </div>
 
-  <!-- About -->
-  <section id="about">
-    <div class="wrap about">
-      <div class="reveal">
-        <p class="eyebrow">About</p>
-        <h2>From idea to store release</h2>
-        <p>I'm a Senior Flutter Developer at AMCODR IT Solutions in Ahmedabad. I build cross-platform apps with Flutter and Dart using BLoC/Cubit, Provider and Clean Architecture, and integrate REST and GraphQL APIs, Firebase, Stripe payments and iOS StoreKit subscriptions.</p>
-        <p>When a feature needs more than Flutter packages can offer, I connect native iOS and Android capabilities through platform channels — that's how I built AR room scanning with ARKit RoomPlan and UWB/BLE indoor positioning.</p>
-        <p>I've worked on product teams, with clients and remotely with a US-based company, and I own the full app lifecycle: development, debugging, testing, performance and releases to the App Store, Google Play and TestFlight.</p>
-      </div>
-      <div class="card reveal">
-        <h3 style="margin-bottom:16px;">How I work</h3>
-        <div class="ways">
-          <div class="way"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l9 5-9 5-9-5 9-5z"/><path d="M3 12l9 5 9-5"/><path d="M3 17l9 5 9-5"/></svg></span><div><b>Clean architecture first</b><span>BLoC/Cubit or Provider, layered code that stays easy to change.</span></div></div>
-          <div class="way"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></span><div><b>Native when needed</b><span>Platform channels for AR, UWB, BLE and other device features.</span></div></div>
-          <div class="way"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span><div><b>Ship it properly</b><span>Store listings, TestFlight builds and releases on both platforms.</span></div></div>
-          <div class="way"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 4.6L18.5 9l-4.6 1.9L12 15.5l-1.9-4.6L5.5 9l4.6-1.4z"/><path d="M19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg></span><div><b>AI-assisted, human-reviewed</b><span>ChatGPT, Claude and Copilot to move faster — every change reviewed.</span></div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Skills -->
-  <section id="skills" style="padding-top:24px;">
+  <!-- Projects -->
+  <section id="projects">
     <div class="wrap">
-      <p class="eyebrow">Skills</p>
-      <h2>Tools I use every day</h2>
-      <p class="section-lead">Focused on Flutter, with the native and release skills needed to take an app all the way to the stores.</p>
-      <div class="skills">
-        <div class="card reveal"><h3>Mobile</h3><div class="chips"><span class="chip">Flutter</span><span class="chip">Dart</span><span class="chip">Android</span><span class="chip">iOS</span><span class="chip">Cross-platform</span><span class="chip">Responsive UI</span></div></div>
-        <div class="card reveal"><h3>Architecture &amp; state</h3><div class="chips"><span class="chip">BLoC</span><span class="chip">Cubit</span><span class="chip">Provider</span><span class="chip">Clean Architecture</span><span class="chip">MVVM</span></div></div>
-        <div class="card reveal"><h3>APIs &amp; backend</h3><div class="chips"><span class="chip">REST</span><span class="chip">JSON</span><span class="chip">GraphQL (Apollo)</span><span class="chip">Firebase</span></div></div>
-        <div class="card reveal"><h3>Native &amp; device</h3><div class="chips"><span class="chip">Platform channels</span><span class="chip">ARKit</span><span class="chip">RoomPlan</span><span class="chip">UWB</span><span class="chip">BLE</span></div></div>
-        <div class="card reveal"><h3>Payments &amp; integrations</h3><div class="chips"><span class="chip">Stripe</span><span class="chip">StoreKit subscriptions</span><span class="chip">Deep links</span><span class="chip">PDF generation</span><span class="chip">Social APIs</span></div></div>
-        <div class="card reveal"><h3>Release &amp; tools</h3><div class="chips"><span class="chip">App Store Connect</span><span class="chip">Google Play Console</span><span class="chip">TestFlight</span><span class="chip">Git &amp; GitHub</span><span class="chip">Postman</span><span class="chip">Xcode</span><span class="chip">Android Studio</span><span class="chip">Figma</span></div></div>
+      <p class="eyebrow">Projects</p>
+      <h2>Selected work</h2>
+      <p class="section-lead">Short demo videos and screenshots from apps I've built — native AR and indoor positioning, plus full apps with payments, subscriptions and reporting. Videos are silent; tap a screenshot to see it larger.</p>
+
+      <!-- PROJECTS:START -->
+      <nav class="jump" aria-label="Jump to a project"><a href="#project-floor-plan-ar">▶ Floor Plan (AR)</a><a href="#project-indoor-positioning">Indoor Positioning</a><a href="#project-dreamclouds">▶ Dreamclouds</a><a href="#project-piggy">▶ Piggy</a><a href="#project-marketplace">Marketplace</a><a href="#project-gauge">Gauge</a><a href="#project-ioweyou">IOweYou</a><a href="#project-custom-calculator">Calculator</a></nav>
+      <div class="showcase">
+      <article class="show reveal" id="project-floor-plan-ar">
+        <div class="media" data-gallery>
+          <div class="stage">
+            <div class="item on" data-caption="Live AR scan → 3D room model → generated 2D floor plan · 0:31"><video controls muted playsinline loop preload="none" data-lead poster="media/floor-plan-ar/highlight.poster.webp" aria-label="Floor Plan Generation — AR Room Scanning — Live AR scan → 3D room model → generated 2D floor plan"><source src="media/floor-plan-ar/highlight.mp4" type="video/mp4"></video></div>
+            <div class="item" data-caption="Floor plan uploaded and edited in the web dashboard · 0:19"><video controls muted playsinline loop preload="none" poster="media/floor-plan-ar/web-dashboard.poster.webp" aria-label="Floor Plan Generation — AR Room Scanning — Floor plan uploaded and edited in the web dashboard"><source src="media/floor-plan-ar/web-dashboard.mp4" type="video/mp4"></video></div>
+            <div class="item" data-caption="Live RoomPlan scan with 3D preview"><button class="zoom" type="button" aria-label="Open larger: Floor Plan Generation — AR Room Scanning — Live RoomPlan scan with 3D preview"><img src="media/floor-plan-ar/img-7698.webp" alt="Floor Plan Generation — AR Room Scanning — Live RoomPlan scan with 3D preview" loading="lazy" decoding="async"></button></div>
+            <div class="item" data-caption="Finished 3D room model"><button class="zoom" type="button" aria-label="Open larger: Floor Plan Generation — AR Room Scanning — Finished 3D room model"><img src="media/floor-plan-ar/img-7697.webp" alt="Floor Plan Generation — AR Room Scanning — Finished 3D room model" loading="lazy" decoding="async"></button></div>
+          </div>
+          <p class="caption">Live AR scan → 3D room model → generated 2D floor plan · 0:31</p>
+          <div class="thumbs" aria-label="Floor Plan Generation — AR Room Scanning media"><button class="thumb on" type="button" data-i="0" aria-label="Video 1: Live AR scan → 3D room model → generated 2D floor plan"><img src="media/floor-plan-ar/highlight.poster.webp" alt="" loading="lazy"><span class="play"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="dur">0:31</span></button><button class="thumb" type="button" data-i="1" aria-label="Video 2: Floor plan uploaded and edited in the web dashboard"><img src="media/floor-plan-ar/web-dashboard.poster.webp" alt="" loading="lazy"><span class="play"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="dur">0:19</span></button><button class="thumb" type="button" data-i="2" aria-label="Screenshot 3: Live RoomPlan scan with 3D preview"><img src="media/floor-plan-ar/img-7698.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="3" aria-label="Screenshot 4: Finished 3D room model"><img src="media/floor-plan-ar/img-7697.webp" alt="" loading="lazy"></button></div>
+        </div>
+        <div class="body">
+          <div class="meta"><span class="tag">Featured</span>AMCODR · iOS · client project · 2 videos · 2 screenshots</div>
+          <h3>Floor Plan Generation — AR Room Scanning</h3>
+          <p class="desc">iOS app built in Flutter that scans a room with AR and generates its floor plan inside the app.</p>
+          <p class="label">What I did</p>
+          <ul><li>AR room scanning with Apple ARKit RoomPlan on LiDAR iPhones and iPads, connected to Flutter through platform channels.</li><li>Captures room geometry and generates the floor plan inside the app.</li><li>Saves the plan as JSON so it can be regenerated later, along with a floor plan image; the backend only stores the data.</li></ul>
+          <div class="chips"><span class="chip">Flutter</span><span class="chip">ARKit RoomPlan</span><span class="chip">Platform channels</span><span class="chip">iOS</span></div>
+        </div>
+      </article>
+      <article class="show reveal" id="project-indoor-positioning">
+        <div class="media" data-gallery>
+          <div class="stage">
+            <div class="item on art" aria-hidden="true"><svg viewBox="0 0 320 170" fill="none" stroke="currentColor" stroke-linecap="round"><g stroke-width="1.4" opacity=".45"><circle cx="60" cy="40" r="70"/><circle cx="60" cy="40" r="110"/><circle cx="262" cy="52" r="85"/><circle cx="262" cy="52" r="125"/><circle cx="150" cy="150" r="48"/><circle cx="150" cy="150" r="80"/></g><g fill="currentColor" stroke="none"><rect x="52" y="32" width="16" height="16" rx="4"/><rect x="254" y="44" width="16" height="16" rx="4"/><rect x="142" y="142" width="16" height="16" rx="4"/></g><circle cx="166" cy="92" r="9" fill="currentColor" stroke="none"/><circle cx="166" cy="92" r="17" stroke-width="2" opacity=".6"/><path d="M60 40L166 92M262 52L166 92M150 150L166 92" stroke-width="1.6" stroke-dasharray="4 5"/><g font-family="JetBrains Mono, monospace" font-size="10" fill="currentColor" stroke="none" opacity=".85"><text x="184" y="98">x: 4.2  y: 2.7</text><text x="34" y="66">UWB A</text><text x="246" y="80">UWB B</text><text x="100" y="156">UWB C</text></g></svg></div>
+          </div>
+        </div>
+        <div class="body">
+          <div class="meta"><span class="tag">Featured</span>AMCODR · client project</div>
+          <h3>Indoor Positioning — UWB &amp; BLE</h3>
+          <p class="desc">Flutter app that finds and shows a device's position indoors using UWB and BLE.</p>
+          <p class="label">What I did</p>
+          <ul><li>UWB-based indoor positioning using trilateration logic, with BLE for device communication.</li><li>Calculates X/Y coordinates and positioning angles and shows them live in the Flutter app.</li><li>Native integration that streams location updates from native code to Flutter.</li></ul>
+          <div class="chips"><span class="chip">Flutter</span><span class="chip">UWB</span><span class="chip">Bluetooth Low Energy</span><span class="chip">Platform channels</span></div>
+        </div>
+      </article>
+      <article class="show reveal" id="project-dreamclouds">
+        <div class="media" data-gallery>
+          <div class="stage">
+            <div class="item on" data-caption="iOS: dream feeds, chat, posting a dream and AI analysis · 0:19"><video controls muted playsinline loop preload="none" data-lead poster="media/dreamclouds/highlight-ios.poster.webp" aria-label="Dreamclouds — iOS: dream feeds, chat, posting a dream and AI analysis"><source src="media/dreamclouds/highlight-ios.mp4" type="video/mp4"></video></div>
+            <div class="item" data-caption="Android: Dream Bank, comments, feeds and trending words · 0:33"><video controls muted playsinline loop preload="none" poster="media/dreamclouds/android.poster.webp" aria-label="Dreamclouds — Android: Dream Bank, comments, feeds and trending words"><source src="media/dreamclouds/android.mp4" type="video/mp4"></video></div>
+          </div>
+          <p class="caption">iOS: dream feeds, chat, posting a dream and AI analysis · 0:19</p>
+          <div class="thumbs" aria-label="Dreamclouds media"><button class="thumb on" type="button" data-i="0" aria-label="Video 1: iOS: dream feeds, chat, posting a dream and AI analysis"><img src="media/dreamclouds/highlight-ios.poster.webp" alt="" loading="lazy"><span class="play"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="dur">0:19</span></button><button class="thumb" type="button" data-i="1" aria-label="Video 2: Android: Dream Bank, comments, feeds and trending words"><img src="media/dreamclouds/android.poster.webp" alt="" loading="lazy"><span class="play"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="dur">0:33</span></button></div>
+        </div>
+        <div class="body">
+          <div class="meta">Dream journaling app · Android &amp; iOS · 2 videos</div>
+          <h3>Dreamclouds</h3>
+          <p class="desc">Social dream-journaling app: write dreams, browse community feeds, chat, and get an AI analysis of each dream.</p>
+          <p class="label">What I did</p>
+          <ul><li>App features built with Flutter and BLoC.</li><li>Stripe membership checkout with backend payment verification.</li><li>Shared-dream deep links and multilingual translation.</li></ul>
+          <div class="chips"><span class="chip">BLoC</span><span class="chip">Stripe</span><span class="chip">Deep links</span></div>
+        </div>
+      </article>
+      <article class="show reveal" id="project-piggy">
+        <div class="media" data-gallery>
+          <div class="stage">
+            <div class="item on" data-caption="Face ID login → home → language switch → transactions · 0:22"><video controls muted playsinline loop preload="none" data-lead poster="media/piggy/highlight.poster.webp" aria-label="Piggy — Face ID login → home → language switch → transactions"><source src="media/piggy/highlight.mp4" type="video/mp4"></video></div>
+            <div class="item" data-caption="Savings overview and earned interest"><button class="zoom" type="button" aria-label="Open larger: Piggy — Savings overview and earned interest"><img src="media/piggy/signal-2025-04-18-172744-003.webp" alt="Piggy — Savings overview and earned interest" loading="lazy" decoding="async"></button></div>
+            <div class="item" data-caption="Interest calculator"><button class="zoom" type="button" aria-label="Open larger: Piggy — Interest calculator"><img src="media/piggy/signal-2025-04-18-172744-002.webp" alt="Piggy — Interest calculator" loading="lazy" decoding="async"></button></div>
+            <div class="item" data-caption="Login with mobile number or Face ID"><button class="zoom" type="button" aria-label="Open larger: Piggy — Login with mobile number or Face ID"><img src="media/piggy/img-3539.webp" alt="Piggy — Login with mobile number or Face ID" loading="lazy" decoding="async"></button></div>
+            <div class="item" data-caption="Onboarding tips"><button class="zoom" type="button" aria-label="Open larger: Piggy — Onboarding tips"><img src="media/piggy/signal-2025-04-18-172744-004.webp" alt="Piggy — Onboarding tips" loading="lazy" decoding="async"></button></div>
+          </div>
+          <p class="caption">Face ID login → home → language switch → transactions · 0:22</p>
+          <div class="thumbs" aria-label="Piggy media"><button class="thumb on" type="button" data-i="0" aria-label="Video 1: Face ID login → home → language switch → transactions"><img src="media/piggy/highlight.poster.webp" alt="" loading="lazy"><span class="play"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="dur">0:22</span></button><button class="thumb" type="button" data-i="1" aria-label="Screenshot 2: Savings overview and earned interest"><img src="media/piggy/signal-2025-04-18-172744-003.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="2" aria-label="Screenshot 3: Interest calculator"><img src="media/piggy/signal-2025-04-18-172744-002.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="3" aria-label="Screenshot 4: Login with mobile number or Face ID"><img src="media/piggy/img-3539.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="4" aria-label="Screenshot 5: Onboarding tips"><img src="media/piggy/signal-2025-04-18-172744-004.webp" alt="" loading="lazy"></button></div>
+        </div>
+        <div class="body">
+          <div class="meta">Savings app · 1 video · 4 screenshots</div>
+          <h3>Piggy</h3>
+          <p class="desc">Savings app with deposits, withdrawals, earned-interest history, an interest calculator and Face ID login, available in German, French and English.</p>
+          <p class="label">What I did</p>
+          <ul><li>Savings and budget management features built in Flutter.</li></ul>
+          <div class="chips"><span class="chip">Flutter</span></div>
+        </div>
+      </article>
+      <article class="show reveal" id="project-marketplace">
+        <div class="media" data-gallery>
+          <div class="stage">
+            <div class="item on" data-caption="Marketplace home"><button class="zoom" type="button" aria-label="Open larger: Marketplace App — Marketplace home"><img src="media/marketplace/signal-2026-05-25-121215-1.webp" alt="Marketplace App — Marketplace home" loading="lazy" decoding="async"></button></div>
+            <div class="item" data-caption="Product details with seller chat"><button class="zoom" type="button" aria-label="Open larger: Marketplace App — Product details with seller chat"><img src="media/marketplace/2-150757512.webp" alt="Marketplace App — Product details with seller chat" loading="lazy" decoding="async"></button></div>
+            <div class="item" data-caption="Seller profile"><button class="zoom" type="button" aria-label="Open larger: Marketplace App — Seller profile"><img src="media/marketplace/4-249949.webp" alt="Marketplace App — Seller profile" loading="lazy" decoding="async"></button></div>
+            <div class="item" data-caption="Filters"><button class="zoom" type="button" aria-label="Open larger: Marketplace App — Filters"><img src="media/marketplace/simulator-screenshot-17385618-2f20-4741-8559-ff812d512203.webp" alt="Marketplace App — Filters" loading="lazy" decoding="async"></button></div>
+            <div class="item" data-caption="Location and search radius"><button class="zoom" type="button" aria-label="Open larger: Marketplace App — Location and search radius"><img src="media/marketplace/5-1.webp" alt="Marketplace App — Location and search radius" loading="lazy" decoding="async"></button></div>
+            <div class="item" data-caption="Create a listing"><button class="zoom" type="button" aria-label="Open larger: Marketplace App — Create a listing"><img src="media/marketplace/simulator-screenshot-40ef352c-760e-44fc-8518-a925a3698fd3.webp" alt="Marketplace App — Create a listing" loading="lazy" decoding="async"></button></div>
+            <div class="item" data-caption="My listings"><button class="zoom" type="button" aria-label="Open larger: Marketplace App — My listings"><img src="media/marketplace/6-150434.webp" alt="Marketplace App — My listings" loading="lazy" decoding="async"></button></div>
+            <div class="item" data-caption="Wallet and transactions"><button class="zoom" type="button" aria-label="Open larger: Marketplace App — Wallet and transactions"><img src="media/marketplace/8-7.webp" alt="Marketplace App — Wallet and transactions" loading="lazy" decoding="async"></button></div>
+            <div class="item" data-caption="Profile"><button class="zoom" type="button" aria-label="Open larger: Marketplace App — Profile"><img src="media/marketplace/simulator-screenshot-652f4342-d43e-4971-adb9-9c0622ead908.webp" alt="Marketplace App — Profile" loading="lazy" decoding="async"></button></div>
+            <div class="item" data-caption="Edit profile"><button class="zoom" type="button" aria-label="Open larger: Marketplace App — Edit profile"><img src="media/marketplace/simulator-screenshot-e1007997-4d8d-42be-93ca-31a78ab55bfa.webp" alt="Marketplace App — Edit profile" loading="lazy" decoding="async"></button></div>
+            <div class="item" data-caption="Login"><button class="zoom" type="button" aria-label="Open larger: Marketplace App — Login"><img src="media/marketplace/simulator-screenshot-84546c97-b842-4368-86ec-01159697405f.webp" alt="Marketplace App — Login" loading="lazy" decoding="async"></button></div>
+            <div class="item" data-caption="Sign-up with mobile number"><button class="zoom" type="button" aria-label="Open larger: Marketplace App — Sign-up with mobile number"><img src="media/marketplace/simulator-screenshot-593c4a21-bdae-45ed-ba54-15473d5ade86.webp" alt="Marketplace App — Sign-up with mobile number" loading="lazy" decoding="async"></button></div>
+          </div>
+          <p class="caption">Marketplace home</p>
+          <div class="thumbs" aria-label="Marketplace App media"><button class="thumb on" type="button" data-i="0" aria-label="Screenshot 1: Marketplace home"><img src="media/marketplace/signal-2026-05-25-121215-1.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="1" aria-label="Screenshot 2: Product details with seller chat"><img src="media/marketplace/2-150757512.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="2" aria-label="Screenshot 3: Seller profile"><img src="media/marketplace/4-249949.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="3" aria-label="Screenshot 4: Filters"><img src="media/marketplace/simulator-screenshot-17385618-2f20-4741-8559-ff812d512203.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="4" aria-label="Screenshot 5: Location and search radius"><img src="media/marketplace/5-1.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="5" aria-label="Screenshot 6: Create a listing"><img src="media/marketplace/simulator-screenshot-40ef352c-760e-44fc-8518-a925a3698fd3.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="6" aria-label="Screenshot 7: My listings"><img src="media/marketplace/6-150434.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="7" aria-label="Screenshot 8: Wallet and transactions"><img src="media/marketplace/8-7.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="8" aria-label="Screenshot 9: Profile"><img src="media/marketplace/simulator-screenshot-652f4342-d43e-4971-adb9-9c0622ead908.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="9" aria-label="Screenshot 10: Edit profile"><img src="media/marketplace/simulator-screenshot-e1007997-4d8d-42be-93ca-31a78ab55bfa.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="10" aria-label="Screenshot 11: Login"><img src="media/marketplace/simulator-screenshot-84546c97-b842-4368-86ec-01159697405f.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="11" aria-label="Screenshot 12: Sign-up with mobile number"><img src="media/marketplace/simulator-screenshot-593c4a21-bdae-45ed-ba54-15473d5ade86.webp" alt="" loading="lazy"></button></div>
+        </div>
+        <div class="body">
+          <div class="meta">Buy &amp; sell marketplace · 12 screenshots</div>
+          <h3>Marketplace App</h3>
+          <p class="desc">Buy-and-sell marketplace app with product listings, location-based search, seller chat and an in-app wallet.</p>
+          <p class="label">What I did</p>
+          <ul><li>Built Flutter mobile features and integrated APIs for a marketplace app.</li></ul>
+          <div class="chips"><span class="chip">Flutter</span><span class="chip">REST API</span></div>
+        </div>
+      </article>
+      <article class="show reveal" id="project-gauge">
+        <div class="media" data-gallery>
+          <div class="stage">
+            <div class="item on" data-caption="Store feature graphic"><button class="zoom" type="button" aria-label="Open larger: Gauge — Store feature graphic"><img src="media/gauge/gauge-app-store-feature-graphic.webp" alt="Gauge — Store feature graphic" loading="lazy" decoding="async"></button></div>
+            <div class="item" data-caption="Daily KPI dashboard"><button class="zoom" type="button" aria-label="Open larger: Gauge — Daily KPI dashboard"><img src="media/gauge/7-2374315-3.webp" alt="Gauge — Daily KPI dashboard" loading="lazy" decoding="async"></button></div>
+            <div class="item" data-caption="Adding a new KPI"><button class="zoom" type="button" aria-label="Open larger: Gauge — Adding a new KPI"><img src="media/gauge/7-2374315-2.webp" alt="Gauge — Adding a new KPI" loading="lazy" decoding="async"></button></div>
+            <div class="item" data-caption="KPI report with charts"><button class="zoom" type="button" aria-label="Open larger: Gauge — KPI report with charts"><img src="media/gauge/7-2374315.webp" alt="Gauge — KPI report with charts" loading="lazy" decoding="async"></button></div>
+            <div class="item" data-caption="Premium upgrade to share reports"><button class="zoom" type="button" aria-label="Open larger: Gauge — Premium upgrade to share reports"><img src="media/gauge/8-7.webp" alt="Gauge — Premium upgrade to share reports" loading="lazy" decoding="async"></button></div>
+            <div class="item" data-caption="Welcome screen"><button class="zoom" type="button" aria-label="Open larger: Gauge — Welcome screen"><img src="media/gauge/7-2374315-4.webp" alt="Gauge — Welcome screen" loading="lazy" decoding="async"></button></div>
+            <div class="item" data-caption="Login with email, Google or Facebook"><button class="zoom" type="button" aria-label="Open larger: Gauge — Login with email, Google or Facebook"><img src="media/gauge/7-2374315-1.webp" alt="Gauge — Login with email, Google or Facebook" loading="lazy" decoding="async"></button></div>
+          </div>
+          <p class="caption">Store feature graphic</p>
+          <div class="thumbs" aria-label="Gauge media"><button class="thumb on" type="button" data-i="0" aria-label="Screenshot 1: Store feature graphic"><img src="media/gauge/gauge-app-store-feature-graphic.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="1" aria-label="Screenshot 2: Daily KPI dashboard"><img src="media/gauge/7-2374315-3.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="2" aria-label="Screenshot 3: Adding a new KPI"><img src="media/gauge/7-2374315-2.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="3" aria-label="Screenshot 4: KPI report with charts"><img src="media/gauge/7-2374315.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="4" aria-label="Screenshot 5: Premium upgrade to share reports"><img src="media/gauge/8-7.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="5" aria-label="Screenshot 6: Welcome screen"><img src="media/gauge/7-2374315-4.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="6" aria-label="Screenshot 7: Login with email, Google or Facebook"><img src="media/gauge/7-2374315-1.webp" alt="" loading="lazy"></button></div>
+        </div>
+        <div class="body">
+          <div class="meta">KPI management app · 7 screenshots</div>
+          <h3>Gauge</h3>
+          <p class="desc">Flutter app for tracking KPIs, with a daily dashboard, charts and shareable reports.</p>
+          <p class="label">What I did</p>
+          <ul><li>KPI tracking, dashboards and report workflows with Cubit.</li><li>PDF report generation inside the app.</li><li>iOS StoreKit subscriptions to unlock premium features.</li></ul>
+          <div class="chips"><span class="chip">Cubit</span><span class="chip">StoreKit</span><span class="chip">PDF</span></div>
+        </div>
+      </article>
+      <article class="show reveal" id="project-ioweyou">
+        <div class="media" data-gallery>
+          <div class="stage">
+            <div class="item on" data-caption="Group expenses"><button class="zoom" type="button" aria-label="Open larger: IOweYou — Group expenses"><img src="media/ioweyou/1721213973894-2.webp" alt="IOweYou — Group expenses" loading="lazy" decoding="async"></button></div>
+            <div class="item" data-caption="Balances: who owes whom"><button class="zoom" type="button" aria-label="Open larger: IOweYou — Balances: who owes whom"><img src="media/ioweyou/1721213975841-5.webp" alt="IOweYou — Balances: who owes whom" loading="lazy" decoding="async"></button></div>
+            <div class="item" data-caption="Split an expense equally or unequally"><button class="zoom" type="button" aria-label="Open larger: IOweYou — Split an expense equally or unequally"><img src="media/ioweyou/1721213967689-1.webp" alt="IOweYou — Split an expense equally or unequally" loading="lazy" decoding="async"></button></div>
+            <div class="item" data-caption="Group details and members"><button class="zoom" type="button" aria-label="Open larger: IOweYou — Group details and members"><img src="media/ioweyou/1721213968482-1.webp" alt="IOweYou — Group details and members" loading="lazy" decoding="async"></button></div>
+            <div class="item" data-caption="Sign in with Google, Facebook or email"><button class="zoom" type="button" aria-label="Open larger: IOweYou — Sign in with Google, Facebook or email"><img src="media/ioweyou/skype-picture-2024-07-12t12-46-18-471z.webp" alt="IOweYou — Sign in with Google, Facebook or email" loading="lazy" decoding="async"></button></div>
+            <div class="item" data-caption="Create account"><button class="zoom" type="button" aria-label="Open larger: IOweYou — Create account"><img src="media/ioweyou/skype-picture-2024-07-15t06-07-50-892z.webp" alt="IOweYou — Create account" loading="lazy" decoding="async"></button></div>
+          </div>
+          <p class="caption">Group expenses</p>
+          <div class="thumbs" aria-label="IOweYou media"><button class="thumb on" type="button" data-i="0" aria-label="Screenshot 1: Group expenses"><img src="media/ioweyou/1721213973894-2.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="1" aria-label="Screenshot 2: Balances: who owes whom"><img src="media/ioweyou/1721213975841-5.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="2" aria-label="Screenshot 3: Split an expense equally or unequally"><img src="media/ioweyou/1721213967689-1.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="3" aria-label="Screenshot 4: Group details and members"><img src="media/ioweyou/1721213968482-1.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="4" aria-label="Screenshot 5: Sign in with Google, Facebook or email"><img src="media/ioweyou/skype-picture-2024-07-12t12-46-18-471z.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="5" aria-label="Screenshot 6: Create account"><img src="media/ioweyou/skype-picture-2024-07-15t06-07-50-892z.webp" alt="" loading="lazy"></button></div>
+        </div>
+        <div class="body">
+          <div class="meta">Expense sharing app · 6 screenshots</div>
+          <h3>IOweYou</h3>
+          <p class="desc">Expense sharing app: create groups, add expenses, split them equally or unequally and see who owes whom.</p>
+          <p class="label">What I did</p>
+          <ul><li>Expense sharing and tracking with secure authentication and cloud data sync.</li></ul>
+          <div class="chips"><span class="chip">Flutter</span><span class="chip">Auth</span><span class="chip">Cloud sync</span></div>
+        </div>
+      </article>
+      </div>
+      <h3 class="more-title">More projects</h3>
+      <div class="more">
+      <article class="proj reveal" id="project-custom-calculator">
+        <div class="body">
+          <div class="meta">Calculator app</div>
+          <h3>Custom Calculator</h3>
+          <p class="label">What I did</p>
+          <ul><li>Calculator with custom formulas and a dynamic UI.</li></ul>
+          <div class="chips"><span class="chip">Flutter</span></div>
+        </div>
+      </article>
+      </div>
+      <!-- PROJECTS:END -->
+
+      <div class="nda reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+        <div>Most of my work is for clients under NDA or shared only through TestFlight, so I can't post source code or store links here. I'm happy to walk through the architecture and decisions behind any of these projects on a call.</div>
       </div>
     </div>
   </section>
@@ -361,174 +516,41 @@
     </div>
   </section>
 
-  <!-- Projects -->
-  <section id="projects">
+  <!-- Skills -->
+  <section id="skills">
     <div class="wrap">
-      <p class="eyebrow">Projects</p>
-      <h2>Selected work</h2>
-      <p class="section-lead">Native features like AR and indoor positioning, plus full apps covering payments, subscriptions and reporting. Tap a screenshot to see it larger.</p>
-
-      <!-- PROJECTS:START -->
-      <div class="showcase">
-      <article class="show reveal" id="project-floor-plan-ar">
-        <div class="media" data-gallery>
-          <div class="stage">
-            <div class="item on" data-caption="Scanning a room with ARKit RoomPlan"><video controls playsinline preload="none" poster="media/floor-plan-ar/screenrecording-06-23-2025-18-03-58-1-part1.poster.webp" aria-label="Floor Plan Generation — AR Room Scanning — Scanning a room with ARKit RoomPlan"><source src="media/floor-plan-ar/screenrecording-06-23-2025-18-03-58-1-part1.mp4" type="video/mp4"></video></div>
-            <div class="item" data-caption="3D room model, generated 2D floor plan and upload"><video controls playsinline preload="none" poster="media/floor-plan-ar/screenrecording-06-23-2025-18-03-58-1-part2.poster.webp" aria-label="Floor Plan Generation — AR Room Scanning — 3D room model, generated 2D floor plan and upload"><source src="media/floor-plan-ar/screenrecording-06-23-2025-18-03-58-1-part2.mp4" type="video/mp4"></video></div>
-            <div class="item" data-caption="Live RoomPlan scan with 3D preview"><button class="zoom" type="button" aria-label="Open larger: Floor Plan Generation — AR Room Scanning — Live RoomPlan scan with 3D preview"><img src="media/floor-plan-ar/img-7698.webp" alt="Floor Plan Generation — AR Room Scanning — Live RoomPlan scan with 3D preview" loading="lazy" decoding="async"></button></div>
-            <div class="item" data-caption="Finished 3D room model"><button class="zoom" type="button" aria-label="Open larger: Floor Plan Generation — AR Room Scanning — Finished 3D room model"><img src="media/floor-plan-ar/img-7697.webp" alt="Floor Plan Generation — AR Room Scanning — Finished 3D room model" loading="lazy" decoding="async"></button></div>
-          </div>
-          <p class="caption">Scanning a room with ARKit RoomPlan</p>
-          <div class="thumbs" aria-label="Floor Plan Generation — AR Room Scanning media"><button class="thumb on" type="button" data-i="0" aria-label="Video 1: Scanning a room with ARKit RoomPlan"><img src="media/floor-plan-ar/screenrecording-06-23-2025-18-03-58-1-part1.poster.webp" alt="" loading="lazy"><span class="play"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></button><button class="thumb" type="button" data-i="1" aria-label="Video 2: 3D room model, generated 2D floor plan and upload"><img src="media/floor-plan-ar/screenrecording-06-23-2025-18-03-58-1-part2.poster.webp" alt="" loading="lazy"><span class="play"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></button><button class="thumb" type="button" data-i="2" aria-label="Screenshot 3: Live RoomPlan scan with 3D preview"><img src="media/floor-plan-ar/img-7698.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="3" aria-label="Screenshot 4: Finished 3D room model"><img src="media/floor-plan-ar/img-7697.webp" alt="" loading="lazy"></button></div>
-        </div>
-        <div class="body">
-          <div class="meta"><span class="tag">Featured</span>AMCODR · iOS · client project · 2 videos · 2 screenshots</div>
-          <h3>Floor Plan Generation — AR Room Scanning</h3>
-          <p class="desc">iOS app built in Flutter that scans a room with AR and generates its floor plan inside the app.</p>
-          <ul><li>AR room scanning with Apple ARKit RoomPlan on LiDAR iPhones and iPads, connected to Flutter through platform channels.</li><li>Captures room geometry and generates the floor plan inside the app.</li><li>Saves the plan as JSON so it can be regenerated later, along with a floor plan image; the backend only stores the data.</li></ul>
-          <div class="chips"><span class="chip">Flutter</span><span class="chip">ARKit RoomPlan</span><span class="chip">Platform channels</span><span class="chip">iOS</span></div>
-        </div>
-      </article>
-      <article class="show reveal" id="project-indoor-positioning">
-        <div class="media" data-gallery>
-          <div class="stage">
-            <div class="item on art" aria-hidden="true"><svg viewBox="0 0 320 170" fill="none" stroke="currentColor" stroke-linecap="round"><g stroke-width="1.4" opacity=".45"><circle cx="60" cy="40" r="70"/><circle cx="60" cy="40" r="110"/><circle cx="262" cy="52" r="85"/><circle cx="262" cy="52" r="125"/><circle cx="150" cy="150" r="48"/><circle cx="150" cy="150" r="80"/></g><g fill="currentColor" stroke="none"><rect x="52" y="32" width="16" height="16" rx="4"/><rect x="254" y="44" width="16" height="16" rx="4"/><rect x="142" y="142" width="16" height="16" rx="4"/></g><circle cx="166" cy="92" r="9" fill="currentColor" stroke="none"/><circle cx="166" cy="92" r="17" stroke-width="2" opacity=".6"/><path d="M60 40L166 92M262 52L166 92M150 150L166 92" stroke-width="1.6" stroke-dasharray="4 5"/><g font-family="JetBrains Mono, monospace" font-size="10" fill="currentColor" stroke="none" opacity=".85"><text x="184" y="98">x: 4.2  y: 2.7</text><text x="34" y="66">UWB A</text><text x="246" y="80">UWB B</text><text x="100" y="156">UWB C</text></g></svg></div>
-          </div>
-        </div>
-        <div class="body">
-          <div class="meta"><span class="tag">Featured</span>AMCODR · client project</div>
-          <h3>Indoor Positioning — UWB &amp; BLE</h3>
-          <p class="desc">Flutter app that finds and shows a device's position indoors using UWB and BLE.</p>
-          <ul><li>UWB-based indoor positioning using trilateration logic, with BLE for device communication.</li><li>Calculates X/Y coordinates and positioning angles and shows them live in the Flutter app.</li><li>Native integration that streams location updates from native code to Flutter.</li></ul>
-          <div class="chips"><span class="chip">Flutter</span><span class="chip">UWB</span><span class="chip">Bluetooth Low Energy</span><span class="chip">Platform channels</span></div>
-        </div>
-      </article>
-      <article class="show reveal" id="project-gauge">
-        <div class="media" data-gallery>
-          <div class="stage">
-            <div class="item on" data-caption="Store feature graphic"><button class="zoom" type="button" aria-label="Open larger: Gauge — Store feature graphic"><img src="media/gauge/gauge-app-store-feature-graphic.webp" alt="Gauge — Store feature graphic" loading="lazy" decoding="async"></button></div>
-            <div class="item" data-caption="Welcome screen"><button class="zoom" type="button" aria-label="Open larger: Gauge — Welcome screen"><img src="media/gauge/7-2374315-4.webp" alt="Gauge — Welcome screen" loading="lazy" decoding="async"></button></div>
-            <div class="item" data-caption="Login with email, Google or Facebook"><button class="zoom" type="button" aria-label="Open larger: Gauge — Login with email, Google or Facebook"><img src="media/gauge/7-2374315-1.webp" alt="Gauge — Login with email, Google or Facebook" loading="lazy" decoding="async"></button></div>
-            <div class="item" data-caption="Daily KPI dashboard"><button class="zoom" type="button" aria-label="Open larger: Gauge — Daily KPI dashboard"><img src="media/gauge/7-2374315-3.webp" alt="Gauge — Daily KPI dashboard" loading="lazy" decoding="async"></button></div>
-            <div class="item" data-caption="Adding a new KPI"><button class="zoom" type="button" aria-label="Open larger: Gauge — Adding a new KPI"><img src="media/gauge/7-2374315-2.webp" alt="Gauge — Adding a new KPI" loading="lazy" decoding="async"></button></div>
-            <div class="item" data-caption="KPI report with charts"><button class="zoom" type="button" aria-label="Open larger: Gauge — KPI report with charts"><img src="media/gauge/7-2374315.webp" alt="Gauge — KPI report with charts" loading="lazy" decoding="async"></button></div>
-            <div class="item" data-caption="Premium upgrade to share reports"><button class="zoom" type="button" aria-label="Open larger: Gauge — Premium upgrade to share reports"><img src="media/gauge/8-7.webp" alt="Gauge — Premium upgrade to share reports" loading="lazy" decoding="async"></button></div>
-          </div>
-          <p class="caption">Store feature graphic</p>
-          <div class="thumbs" aria-label="Gauge media"><button class="thumb on" type="button" data-i="0" aria-label="Screenshot 1: Store feature graphic"><img src="media/gauge/gauge-app-store-feature-graphic.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="1" aria-label="Screenshot 2: Welcome screen"><img src="media/gauge/7-2374315-4.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="2" aria-label="Screenshot 3: Login with email, Google or Facebook"><img src="media/gauge/7-2374315-1.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="3" aria-label="Screenshot 4: Daily KPI dashboard"><img src="media/gauge/7-2374315-3.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="4" aria-label="Screenshot 5: Adding a new KPI"><img src="media/gauge/7-2374315-2.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="5" aria-label="Screenshot 6: KPI report with charts"><img src="media/gauge/7-2374315.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="6" aria-label="Screenshot 7: Premium upgrade to share reports"><img src="media/gauge/8-7.webp" alt="" loading="lazy"></button></div>
-        </div>
-        <div class="body">
-          <div class="meta">KPI management app · 7 screenshots</div>
-          <h3>Gauge</h3>
-          <p class="desc">Flutter app for tracking KPIs, with a daily dashboard, charts and shareable reports.</p>
-          <ul><li>KPI tracking, dashboards and report workflows with Cubit.</li><li>PDF report generation inside the app.</li><li>iOS StoreKit subscriptions to unlock premium features.</li></ul>
-          <div class="chips"><span class="chip">Cubit</span><span class="chip">StoreKit</span><span class="chip">PDF</span></div>
-        </div>
-      </article>
-      <article class="show reveal" id="project-dreamclouds">
-        <div class="media" data-gallery>
-          <div class="stage">
-            <div class="item on" data-caption="Dream feeds, verified dreams and chat (iOS, dark mode)"><video controls playsinline preload="none" poster="media/dreamclouds/signal-2026-09-24-18-24-09-029-002-part1.poster.webp" aria-label="Dreamclouds — Dream feeds, verified dreams and chat (iOS, dark mode)"><source src="media/dreamclouds/signal-2026-09-24-18-24-09-029-002-part1.mp4" type="video/mp4"></video></div>
-            <div class="item" data-caption="Posting a dream with AI analysis"><video controls playsinline preload="none" poster="media/dreamclouds/signal-2026-09-24-18-24-09-029-002-part2.poster.webp" aria-label="Dreamclouds — Posting a dream with AI analysis"><source src="media/dreamclouds/signal-2026-09-24-18-24-09-029-002-part2.mp4" type="video/mp4"></video></div>
-            <div class="item" data-caption="Dream Bank, comments, feeds and trending words (Android)"><video controls playsinline preload="none" poster="media/dreamclouds/signal-2026-09-24-18-23-30-059-002-part1.poster.webp" aria-label="Dreamclouds — Dream Bank, comments, feeds and trending words (Android)"><source src="media/dreamclouds/signal-2026-09-24-18-23-30-059-002-part1.mp4" type="video/mp4"></video></div>
-          </div>
-          <p class="caption">Dream feeds, verified dreams and chat (iOS, dark mode)</p>
-          <div class="thumbs" aria-label="Dreamclouds media"><button class="thumb on" type="button" data-i="0" aria-label="Video 1: Dream feeds, verified dreams and chat (iOS, dark mode)"><img src="media/dreamclouds/signal-2026-09-24-18-24-09-029-002-part1.poster.webp" alt="" loading="lazy"><span class="play"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></button><button class="thumb" type="button" data-i="1" aria-label="Video 2: Posting a dream with AI analysis"><img src="media/dreamclouds/signal-2026-09-24-18-24-09-029-002-part2.poster.webp" alt="" loading="lazy"><span class="play"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></button><button class="thumb" type="button" data-i="2" aria-label="Video 3: Dream Bank, comments, feeds and trending words (Android)"><img src="media/dreamclouds/signal-2026-09-24-18-23-30-059-002-part1.poster.webp" alt="" loading="lazy"><span class="play"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></button></div>
-        </div>
-        <div class="body">
-          <div class="meta">Dream journaling app · Android &amp; iOS · 3 videos</div>
-          <h3>Dreamclouds</h3>
-          <p class="desc">Social dream-journaling app: write dreams, browse community feeds, chat, and get an AI analysis of each dream.</p>
-          <ul><li>App features built with Flutter and BLoC.</li><li>Stripe membership checkout with backend payment verification.</li><li>Shared-dream deep links and multilingual translation.</li></ul>
-          <div class="chips"><span class="chip">BLoC</span><span class="chip">Stripe</span><span class="chip">Deep links</span></div>
-        </div>
-      </article>
-      <article class="show reveal" id="project-ioweyou">
-        <div class="media" data-gallery>
-          <div class="stage">
-            <div class="item on" data-caption="Sign in with Google, Facebook or email"><button class="zoom" type="button" aria-label="Open larger: IOweYou — Sign in with Google, Facebook or email"><img src="media/ioweyou/skype-picture-2024-07-12t12-46-18-471z.webp" alt="IOweYou — Sign in with Google, Facebook or email" loading="lazy" decoding="async"></button></div>
-            <div class="item" data-caption="Create account"><button class="zoom" type="button" aria-label="Open larger: IOweYou — Create account"><img src="media/ioweyou/skype-picture-2024-07-15t06-07-50-892z.webp" alt="IOweYou — Create account" loading="lazy" decoding="async"></button></div>
-            <div class="item" data-caption="Group details and members"><button class="zoom" type="button" aria-label="Open larger: IOweYou — Group details and members"><img src="media/ioweyou/1721213968482-1.webp" alt="IOweYou — Group details and members" loading="lazy" decoding="async"></button></div>
-            <div class="item" data-caption="Group expenses"><button class="zoom" type="button" aria-label="Open larger: IOweYou — Group expenses"><img src="media/ioweyou/1721213973894-2.webp" alt="IOweYou — Group expenses" loading="lazy" decoding="async"></button></div>
-            <div class="item" data-caption="Split an expense equally or unequally"><button class="zoom" type="button" aria-label="Open larger: IOweYou — Split an expense equally or unequally"><img src="media/ioweyou/1721213967689-1.webp" alt="IOweYou — Split an expense equally or unequally" loading="lazy" decoding="async"></button></div>
-            <div class="item" data-caption="Balances: who owes whom"><button class="zoom" type="button" aria-label="Open larger: IOweYou — Balances: who owes whom"><img src="media/ioweyou/1721213975841-5.webp" alt="IOweYou — Balances: who owes whom" loading="lazy" decoding="async"></button></div>
-          </div>
-          <p class="caption">Sign in with Google, Facebook or email</p>
-          <div class="thumbs" aria-label="IOweYou media"><button class="thumb on" type="button" data-i="0" aria-label="Screenshot 1: Sign in with Google, Facebook or email"><img src="media/ioweyou/skype-picture-2024-07-12t12-46-18-471z.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="1" aria-label="Screenshot 2: Create account"><img src="media/ioweyou/skype-picture-2024-07-15t06-07-50-892z.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="2" aria-label="Screenshot 3: Group details and members"><img src="media/ioweyou/1721213968482-1.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="3" aria-label="Screenshot 4: Group expenses"><img src="media/ioweyou/1721213973894-2.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="4" aria-label="Screenshot 5: Split an expense equally or unequally"><img src="media/ioweyou/1721213967689-1.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="5" aria-label="Screenshot 6: Balances: who owes whom"><img src="media/ioweyou/1721213975841-5.webp" alt="" loading="lazy"></button></div>
-        </div>
-        <div class="body">
-          <div class="meta">Expense sharing app · 6 screenshots</div>
-          <h3>IOweYou</h3>
-          <p class="desc">Expense sharing app: create groups, add expenses, split them equally or unequally and see who owes whom.</p>
-          <ul><li>Expense sharing and tracking with secure authentication and cloud data sync.</li></ul>
-          <div class="chips"><span class="chip">Flutter</span><span class="chip">Auth</span><span class="chip">Cloud sync</span></div>
-        </div>
-      </article>
-      <article class="show reveal" id="project-marketplace">
-        <div class="media" data-gallery>
-          <div class="stage">
-            <div class="item on" data-caption="Marketplace home"><button class="zoom" type="button" aria-label="Open larger: Marketplace App — Marketplace home"><img src="media/marketplace/signal-2026-05-25-121215-1.webp" alt="Marketplace App — Marketplace home" loading="lazy" decoding="async"></button></div>
-            <div class="item" data-caption="Product details with seller chat"><button class="zoom" type="button" aria-label="Open larger: Marketplace App — Product details with seller chat"><img src="media/marketplace/2-150757512.webp" alt="Marketplace App — Product details with seller chat" loading="lazy" decoding="async"></button></div>
-            <div class="item" data-caption="Seller profile"><button class="zoom" type="button" aria-label="Open larger: Marketplace App — Seller profile"><img src="media/marketplace/4-249949.webp" alt="Marketplace App — Seller profile" loading="lazy" decoding="async"></button></div>
-            <div class="item" data-caption="Filters"><button class="zoom" type="button" aria-label="Open larger: Marketplace App — Filters"><img src="media/marketplace/simulator-screenshot-17385618-2f20-4741-8559-ff812d512203.webp" alt="Marketplace App — Filters" loading="lazy" decoding="async"></button></div>
-            <div class="item" data-caption="Location and search radius"><button class="zoom" type="button" aria-label="Open larger: Marketplace App — Location and search radius"><img src="media/marketplace/5-1.webp" alt="Marketplace App — Location and search radius" loading="lazy" decoding="async"></button></div>
-            <div class="item" data-caption="Create a listing"><button class="zoom" type="button" aria-label="Open larger: Marketplace App — Create a listing"><img src="media/marketplace/simulator-screenshot-40ef352c-760e-44fc-8518-a925a3698fd3.webp" alt="Marketplace App — Create a listing" loading="lazy" decoding="async"></button></div>
-            <div class="item" data-caption="My listings"><button class="zoom" type="button" aria-label="Open larger: Marketplace App — My listings"><img src="media/marketplace/6-150434.webp" alt="Marketplace App — My listings" loading="lazy" decoding="async"></button></div>
-            <div class="item" data-caption="Wallet and transactions"><button class="zoom" type="button" aria-label="Open larger: Marketplace App — Wallet and transactions"><img src="media/marketplace/8-7.webp" alt="Marketplace App — Wallet and transactions" loading="lazy" decoding="async"></button></div>
-            <div class="item" data-caption="Profile"><button class="zoom" type="button" aria-label="Open larger: Marketplace App — Profile"><img src="media/marketplace/simulator-screenshot-652f4342-d43e-4971-adb9-9c0622ead908.webp" alt="Marketplace App — Profile" loading="lazy" decoding="async"></button></div>
-            <div class="item" data-caption="Edit profile"><button class="zoom" type="button" aria-label="Open larger: Marketplace App — Edit profile"><img src="media/marketplace/simulator-screenshot-e1007997-4d8d-42be-93ca-31a78ab55bfa.webp" alt="Marketplace App — Edit profile" loading="lazy" decoding="async"></button></div>
-            <div class="item" data-caption="Login"><button class="zoom" type="button" aria-label="Open larger: Marketplace App — Login"><img src="media/marketplace/simulator-screenshot-84546c97-b842-4368-86ec-01159697405f.webp" alt="Marketplace App — Login" loading="lazy" decoding="async"></button></div>
-            <div class="item" data-caption="Sign-up with mobile number"><button class="zoom" type="button" aria-label="Open larger: Marketplace App — Sign-up with mobile number"><img src="media/marketplace/simulator-screenshot-593c4a21-bdae-45ed-ba54-15473d5ade86.webp" alt="Marketplace App — Sign-up with mobile number" loading="lazy" decoding="async"></button></div>
-          </div>
-          <p class="caption">Marketplace home</p>
-          <div class="thumbs" aria-label="Marketplace App media"><button class="thumb on" type="button" data-i="0" aria-label="Screenshot 1: Marketplace home"><img src="media/marketplace/signal-2026-05-25-121215-1.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="1" aria-label="Screenshot 2: Product details with seller chat"><img src="media/marketplace/2-150757512.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="2" aria-label="Screenshot 3: Seller profile"><img src="media/marketplace/4-249949.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="3" aria-label="Screenshot 4: Filters"><img src="media/marketplace/simulator-screenshot-17385618-2f20-4741-8559-ff812d512203.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="4" aria-label="Screenshot 5: Location and search radius"><img src="media/marketplace/5-1.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="5" aria-label="Screenshot 6: Create a listing"><img src="media/marketplace/simulator-screenshot-40ef352c-760e-44fc-8518-a925a3698fd3.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="6" aria-label="Screenshot 7: My listings"><img src="media/marketplace/6-150434.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="7" aria-label="Screenshot 8: Wallet and transactions"><img src="media/marketplace/8-7.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="8" aria-label="Screenshot 9: Profile"><img src="media/marketplace/simulator-screenshot-652f4342-d43e-4971-adb9-9c0622ead908.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="9" aria-label="Screenshot 10: Edit profile"><img src="media/marketplace/simulator-screenshot-e1007997-4d8d-42be-93ca-31a78ab55bfa.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="10" aria-label="Screenshot 11: Login"><img src="media/marketplace/simulator-screenshot-84546c97-b842-4368-86ec-01159697405f.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="11" aria-label="Screenshot 12: Sign-up with mobile number"><img src="media/marketplace/simulator-screenshot-593c4a21-bdae-45ed-ba54-15473d5ade86.webp" alt="" loading="lazy"></button></div>
-        </div>
-        <div class="body">
-          <div class="meta">Buy &amp; sell marketplace · 12 screenshots</div>
-          <h3>Marketplace App</h3>
-          <p class="desc">Buy-and-sell marketplace app with product listings, location-based search, seller chat and an in-app wallet.</p>
-          <ul><li>Built Flutter mobile features and integrated APIs for a marketplace app.</li></ul>
-          <div class="chips"><span class="chip">Flutter</span><span class="chip">REST API</span></div>
-        </div>
-      </article>
-      <article class="show reveal" id="project-piggy">
-        <div class="media" data-gallery>
-          <div class="stage">
-            <div class="item on" data-caption="Overview, transactions, settings, documents and support"><video controls playsinline preload="none" poster="media/piggy/screenrecording-04-18-2025-17-54-50-1-part1.poster.webp" aria-label="Piggy — Overview, transactions, settings, documents and support"><source src="media/piggy/screenrecording-04-18-2025-17-54-50-1-part1.mp4" type="video/mp4"></video></div>
-            <div class="item" data-caption="Face ID login, profile and notification settings"><video controls playsinline preload="none" poster="media/piggy/screenrecording-04-18-2025-18-05-08-1-part1.poster.webp" aria-label="Piggy — Face ID login, profile and notification settings"><source src="media/piggy/screenrecording-04-18-2025-18-05-08-1-part1.mp4" type="video/mp4"></video></div>
-            <div class="item" data-caption="Login with mobile number or Face ID"><button class="zoom" type="button" aria-label="Open larger: Piggy — Login with mobile number or Face ID"><img src="media/piggy/img-3539.webp" alt="Piggy — Login with mobile number or Face ID" loading="lazy" decoding="async"></button></div>
-            <div class="item" data-caption="Savings overview and earned interest"><button class="zoom" type="button" aria-label="Open larger: Piggy — Savings overview and earned interest"><img src="media/piggy/signal-2025-04-18-172744-003.webp" alt="Piggy — Savings overview and earned interest" loading="lazy" decoding="async"></button></div>
-            <div class="item" data-caption="Interest calculator"><button class="zoom" type="button" aria-label="Open larger: Piggy — Interest calculator"><img src="media/piggy/signal-2025-04-18-172744-002.webp" alt="Piggy — Interest calculator" loading="lazy" decoding="async"></button></div>
-            <div class="item" data-caption="Onboarding tips"><button class="zoom" type="button" aria-label="Open larger: Piggy — Onboarding tips"><img src="media/piggy/signal-2025-04-18-172744-004.webp" alt="Piggy — Onboarding tips" loading="lazy" decoding="async"></button></div>
-          </div>
-          <p class="caption">Overview, transactions, settings, documents and support</p>
-          <div class="thumbs" aria-label="Piggy media"><button class="thumb on" type="button" data-i="0" aria-label="Video 1: Overview, transactions, settings, documents and support"><img src="media/piggy/screenrecording-04-18-2025-17-54-50-1-part1.poster.webp" alt="" loading="lazy"><span class="play"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></button><button class="thumb" type="button" data-i="1" aria-label="Video 2: Face ID login, profile and notification settings"><img src="media/piggy/screenrecording-04-18-2025-18-05-08-1-part1.poster.webp" alt="" loading="lazy"><span class="play"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></button><button class="thumb" type="button" data-i="2" aria-label="Screenshot 3: Login with mobile number or Face ID"><img src="media/piggy/img-3539.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="3" aria-label="Screenshot 4: Savings overview and earned interest"><img src="media/piggy/signal-2025-04-18-172744-003.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="4" aria-label="Screenshot 5: Interest calculator"><img src="media/piggy/signal-2025-04-18-172744-002.webp" alt="" loading="lazy"></button><button class="thumb" type="button" data-i="5" aria-label="Screenshot 6: Onboarding tips"><img src="media/piggy/signal-2025-04-18-172744-004.webp" alt="" loading="lazy"></button></div>
-        </div>
-        <div class="body">
-          <div class="meta">Savings app · 2 videos · 4 screenshots</div>
-          <h3>Piggy</h3>
-          <p class="desc">Savings app with deposits, withdrawals, earned-interest history, an interest calculator and Face ID login, available in German, French and English.</p>
-          <ul><li>Savings and budget management features built in Flutter.</li></ul>
-          <div class="chips"><span class="chip">Flutter</span></div>
-        </div>
-      </article>
+      <p class="eyebrow">Skills</p>
+      <h2>Tools I use every day</h2>
+      <p class="section-lead">Focused on Flutter, with the native and release skills needed to take an app all the way to the stores.</p>
+      <div class="skills">
+        <div class="card reveal"><h3>Mobile</h3><div class="chips"><span class="chip">Flutter</span><span class="chip">Dart</span><span class="chip">Android</span><span class="chip">iOS</span><span class="chip">Cross-platform</span><span class="chip">Responsive UI</span></div></div>
+        <div class="card reveal"><h3>Architecture &amp; state</h3><div class="chips"><span class="chip">BLoC</span><span class="chip">Cubit</span><span class="chip">Provider</span><span class="chip">Clean Architecture</span><span class="chip">MVVM</span></div></div>
+        <div class="card reveal"><h3>APIs &amp; backend</h3><div class="chips"><span class="chip">REST</span><span class="chip">JSON</span><span class="chip">GraphQL (Apollo)</span><span class="chip">Firebase</span></div></div>
+        <div class="card reveal"><h3>Native &amp; device</h3><div class="chips"><span class="chip">Platform channels</span><span class="chip">ARKit</span><span class="chip">RoomPlan</span><span class="chip">UWB</span><span class="chip">BLE</span></div></div>
+        <div class="card reveal"><h3>Payments &amp; integrations</h3><div class="chips"><span class="chip">Stripe</span><span class="chip">StoreKit subscriptions</span><span class="chip">Deep links</span><span class="chip">PDF generation</span><span class="chip">Social APIs</span></div></div>
+        <div class="card reveal"><h3>Release &amp; tools</h3><div class="chips"><span class="chip">App Store Connect</span><span class="chip">Google Play Console</span><span class="chip">TestFlight</span><span class="chip">Git &amp; GitHub</span><span class="chip">Postman</span><span class="chip">Xcode</span><span class="chip">Android Studio</span><span class="chip">Figma</span></div></div>
       </div>
-      <h3 class="more-title">More projects</h3>
-      <div class="more">
-      <article class="proj reveal" id="project-custom-calculator">
-        <div class="body">
-          <div class="meta">Calculator app</div>
-          <h3>Custom Calculator</h3>
-          <ul><li>Calculator with custom formulas and a dynamic UI.</li></ul>
-          <div class="chips"><span class="chip">Flutter</span></div>
-        </div>
-      </article>
-      </div>
-      <!-- PROJECTS:END -->
+    </div>
+  </section>
 
-      <div class="nda reveal">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
-        <div>Most of my work is for clients under NDA or shared only through TestFlight, so I can't post source code or store links here. I'm happy to walk through the architecture and decisions behind any of these projects on a call.</div>
+  <!-- About -->
+  <section id="about">
+    <div class="wrap about">
+      <div class="reveal">
+        <p class="eyebrow">About</p>
+        <h2>From idea to store release</h2>
+        <p>I'm a Senior Flutter Developer at AMCODR IT Solutions in Ahmedabad. I build cross-platform apps with Flutter and Dart using BLoC/Cubit, Provider and Clean Architecture, and integrate REST and GraphQL APIs, Firebase, Stripe payments and iOS StoreKit subscriptions.</p>
+        <p>When a feature needs more than Flutter packages can offer, I connect native iOS and Android capabilities through platform channels — that's how I built AR room scanning with ARKit RoomPlan and UWB/BLE indoor positioning.</p>
+        <p>I've worked on product teams, with clients and remotely with a US-based company, and I own the full app lifecycle: development, debugging, testing, performance and releases to the App Store, Google Play and TestFlight.</p>
+      </div>
+      <div class="card reveal">
+        <h3 style="margin-bottom:16px;">How I work</h3>
+        <div class="ways">
+          <div class="way"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l9 5-9 5-9-5 9-5z"/><path d="M3 12l9 5 9-5"/><path d="M3 17l9 5 9-5"/></svg></span><div><b>Clean architecture first</b><span>BLoC/Cubit or Provider, layered code that stays easy to change.</span></div></div>
+          <div class="way"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></span><div><b>Native when needed</b><span>Platform channels for AR, UWB, BLE and other device features.</span></div></div>
+          <div class="way"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span><div><b>Ship it properly</b><span>Store listings, TestFlight builds and releases on both platforms.</span></div></div>
+          <div class="way"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 4.6L18.5 9l-4.6 1.9L12 15.5l-1.9-4.6L5.5 9l4.6-1.4z"/><path d="M19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg></span><div><b>AI-assisted, human-reviewed</b><span>ChatGPT, Claude and Copilot to move faster — every change reviewed.</span></div></div>
+        </div>
       </div>
     </div>
   </section>
@@ -604,9 +626,28 @@
           });
           thumbs.forEach(function (x, k) { x.classList.toggle('on', k === i); });
           if (cap) cap.textContent = items[i].getAttribute('data-caption') || '';
+          var nv = items[i].querySelector('video');
+          if (nv) { var pr = nv.play(); if (pr && pr.catch) pr.catch(function () {}); }
         });
       });
     });
+
+    // Lead videos play silently while on screen (large screens only; respects data saver and reduced motion).
+    var canAuto = window.matchMedia('(min-width: 900px)').matches &&
+      !window.matchMedia('(prefers-reduced-motion: reduce)').matches &&
+      !(navigator.connection && navigator.connection.saveData);
+    if (canAuto && 'IntersectionObserver' in window) {
+      var vio = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          var v = en.target;
+          if (!v.closest('.item').classList.contains('on')) return;
+          if (en.isIntersecting && en.intersectionRatio >= 0.6) {
+            v.muted = true; var p = v.play(); if (p && p.catch) p.catch(function () {});
+          } else if (!v.paused) { v.pause(); }
+        });
+      }, { threshold: [0, 0.6] });
+      document.querySelectorAll('video[data-lead]').forEach(function (v) { vio.observe(v); });
+    }
 
     // Lightbox for screenshots (per project).
     var lb = document.getElementById('lightbox'), lbImg = lb.querySelector('img'), lbCap = lb.querySelector('p');

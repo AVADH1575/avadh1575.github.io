@@ -1,29 +1,36 @@
 {
   "7-2374315-1.webp": {
+    "type": "image",
     "caption": "Login with email, Google or Facebook",
-    "order": 3
-  },
-  "7-2374315-2.webp": {
-    "caption": "Adding a new KPI",
-    "order": 5
-  },
-  "7-2374315-3.webp": {
-    "caption": "Daily KPI dashboard",
-    "order": 4
-  },
-  "7-2374315-4.webp": {
-    "caption": "Welcome screen",
-    "order": 2
-  },
-  "7-2374315.webp": {
-    "caption": "KPI report with charts",
-    "order": 6
-  },
-  "8-7.webp": {
-    "caption": "Premium upgrade to share reports",
     "order": 7
   },
+  "7-2374315-2.webp": {
+    "type": "image",
+    "caption": "Adding a new KPI",
+    "order": 3
+  },
+  "7-2374315-3.webp": {
+    "type": "image",
+    "caption": "Daily KPI dashboard",
+    "order": 2
+  },
+  "7-2374315-4.webp": {
+    "type": "image",
+    "caption": "Welcome screen",
+    "order": 6
+  },
+  "7-2374315.webp": {
+    "type": "image",
+    "caption": "KPI report with charts",
+    "order": 4
+  },
+  "8-7.webp": {
+    "type": "image",
+    "caption": "Premium upgrade to share reports",
+    "order": 5
+  },
   "gauge-app-store-feature-graphic.webp": {
+    "type": "image",
     "caption": "Store feature graphic",
     "order": 1
   }
