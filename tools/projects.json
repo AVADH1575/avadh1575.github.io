@@ -146,13 +146,13 @@
     "summary": "A dream journal app. People write down their dreams, read other people's, chat, and can get an AI reading of a dream.",
     "bullets": [
       "App features built with Flutter and BLoC.",
-      "Stripe membership checkout with backend payment verification.",
-      "Shared-dream deep links and multilingual translation."
+      "Stripe monthly membership subscriptions with backend payment verification.",
+      "Shared-dream deep links (Android App Links, iOS Universal Links) and multilingual translation."
     ],
     "tags": [
       "BLoC",
-      "Stripe",
-      "Deep links"
+      "Stripe subscriptions",
+      "App Links / Universal Links"
     ],
     "videos": [
       {
