@@ -405,6 +405,63 @@
     }
   },
   {
+    "slug": "eight",
+    "short": "Eight",
+    "folder": "9 Eight",
+    "title": "Eight",
+    "meta": "Loyalty & membership app",
+    "summary": "A membership app where members collect points, move up ranks and get rewards.",
+    "bullets": [
+      "Member ranks, points with expiry dates, level-up rewards and an events calendar.",
+      "Card and bank-transfer payments, and invite-a-friend referrals.",
+      "Push notifications with Firebase, crash reporting, and several languages.",
+      "Built with BLoC and Dio, with login tokens kept in secure storage."
+    ],
+    "tags": [
+      "BLoC",
+      "Dio",
+      "Firebase",
+      "Push notifications"
+    ]
+  },
+  {
+    "slug": "homefusion",
+    "short": "HomeFusion",
+    "folder": "10 HomeFusion",
+    "title": "HomeFusion",
+    "meta": "Real estate app",
+    "summary": "A property app for homes in Portugal's Algarve: browse listings, save favourites and list your own property.",
+    "bullets": [
+      "Property listings with filters, favourites and paging from a REST API.",
+      "Users can add, edit and delete their own listings with photos.",
+      "Map view with property pins using Google Maps.",
+      "Sign in with email, Google or Facebook."
+    ],
+    "tags": [
+      "REST API",
+      "Google Maps",
+      "Firebase Auth"
+    ]
+  },
+  {
+    "slug": "ornascan",
+    "short": "OrnaScan",
+    "folder": "11 OrnaScan",
+    "title": "OrnaScan",
+    "meta": "QR scanning app",
+    "summary": "A small work tool that connects to a company's server and sends scanned QR codes with a photo.",
+    "bullets": [
+      "Connects to the company's server with a user name and domain, and remembers it.",
+      "Scans QR codes with the camera and checks they are valid.",
+      "Attaches a photo from the camera or gallery and submits both to the server."
+    ],
+    "tags": [
+      "Flutter",
+      "QR scanning",
+      "REST API"
+    ]
+  },
+  {
     "slug": "custom-calculator",
     "short": "Calculator",
     "folder": "8 Custom Calculator",
